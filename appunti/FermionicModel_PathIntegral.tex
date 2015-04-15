@@ -1,0 +1,100 @@
+\documentclass[a4paper,11pt]{amsart}
+
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{vmargin}
+
+\usepackage[all]{xy}
+\usepackage{graphicx}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}   
+\usepackage[english]{babel}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+\usepackage{enumitem}
+\usepackage{xfrac}
+\usepackage{slashed}
+\usepackage{cancel}
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+%-------------------------------------------------------------------------------
+
+\allowdisplaybreaks[4]
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\ssection}[2]{\section{ \texorpdfstring{\textbf{#1}}{#2} }}
+
+\newcommand{\HRule}{\center{\rule{0.9\linewidth}{0.5mm}}}
+
+% add these definistions to the definitions' file!!!!!!! --------------------------------------
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+
+\newcommand{\mean}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\kett}[1]{\ensuremath{\left | #1 \right \rangle}}
+\newcommand{\brat}[1]{\ensuremath{\left \langle  #1 \right | }}
+\newcommand{\ket}[1]{\left | #1 \right \rangle}
+\newcommand{\bra}[1]{\left \langle  #1 \right |}
+
+\newcommand{\nl}{\vskip 0.3cm}
+\newcommand{\np}{\vskip 1.3cm}
+
+\newcommand{\obar}[1]{\overline{#1}}
+\newcommand{\ubar}[1]{\underline{#1}}
+\newcommand{\psibar}{\bar{\psi}}
+\newcommand{\sigmatilde}{\tilde{\sigma}}
+
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\demu}[1]{\partial#1{\mu}}
+\newcommand{\denu}[1]{\partial#1{\nu}}
+\newcommand{\pder}[3]{\dfrac{\partial^{#1} #2}{\partial^{#1} #3}}
+\newcommand{\de}[1]{\frac{d^2#1}{(2\pi)^2}}
+ 
+% ---------------------------------------------------------------------------------------------
+
+
+% ---- info ---------
+\title{Notes: Fermionic model of interest}
+\author{Federico Tonielli}
+
+% ---- document -----
+\begin{document}
+
+ \maketitle
+ 
+ \tableofcontents
+ \blankpage
+ 
+ \section{The second-quantized model}
+ Here we present the general model under study in a second quantized formalism.  Moreover, the full equation of motion of the two-point correlation matrix at equal times is derived.
+  \subsection{Quantum Master Equation in Majorana form}
+  We consider an open quantum system of fermions on a D-dimensional lattice; we assume its dynamics to be described by a Markovian Quantum Master Equation (QME hereby), which in the Lindblad form reads
+  \[  \]
+  Here 
+  \subsection{Equation of motion for the Covariance Matrix from QME}
+ \section{Path Integral reformulation of the QME}
+  \subsection{Keldysh action for Majorana fermions}
+  \subsection{Re-derivating the equation for the stationary Covariance Matrix}
+
+  \appendix
+  \section*{Appendix}
+    \renewcommand{\thesection}{A}
+    \subsection{``Majorana doubling'' trick}
+   
+   
+\bibliography{library}{}
+\bibliographystyle{amsplain}  
+\end{document}

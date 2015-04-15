@@ -1,0 +1,9 @@
+\select@language {english}
+\contentsline {section}{\tocsection {}{1}{The second-quantized model}}{1}{section.1}
+\contentsline {subsection}{\tocsubsection {}{1.1}{Quantum Master Equation in Majorana form}}{1}{subsection.1.1}
+\contentsline {subsection}{\tocsubsection {}{1.2}{Equation of motion for the Covariance Matrix from QME}}{1}{subsection.1.2}
+\contentsline {section}{\tocsection {}{2}{Path Integral reformulation of the QME}}{1}{section.2}
+\contentsline {subsection}{\tocsubsection {}{2.1}{Keldysh action for Majorana fermions}}{1}{subsection.2.1}
+\contentsline {subsection}{\tocsubsection {}{.0}{Re-derivating the equation for the stationary Covariance Matrix}}{1}{subsection.2.2}
+\contentsline {section}{\tocsection {Appendix}{}{Appendix}}{1}{section*.2}
+\contentsline {subsection}{\tocsubsection {}{A.1}{``Majorana doubling'' trick}}{1}{subsection.Alph0.1}
