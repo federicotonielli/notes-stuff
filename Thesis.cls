@@ -73,7 +73,7 @@
 \onehalfspacing
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2.0ex plus0.5ex minus0.2ex}
-\usepackage{fullpage}
+% \usepackage{fullpage}
 \usepackage{afterpage}
 \usepackage{vmargin}
 
@@ -96,7 +96,7 @@
 \widowpenalty=9999                % Almost no widows at bottom of page.
 \clubpenalty=9999                 % Almost no orphans at top of page.
 \interfootnotelinepenalty=9999    % Almost never break footnotes.
-\allowdisplaybreaks[4]            % Breaks the equations between two pages if too long
+% \allowdisplaybreaks[4]            % Breaks the equations between two pages if too long
 
 
 \usepackage{fancyhdr}
