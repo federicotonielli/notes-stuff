@@ -1,0 +1,387 @@
+\documentclass[a4paper,11pt]{amsart}
+\usepackage[utf8x]{inputenc}
+
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\usepackage[all]{xy}
+\usepackage{graphicx}
+
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}   
+\usepackage[italian]{babel}
+
+\usepackage{enumitem}
+\usepackage{xfrac}
+\usepackage{slashed}
+\usepackage{cancel}
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+%-------------------------------------------------------------------------------
+
+\allowdisplaybreaks[4]
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\mean}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\kett}[1]{\ensuremath{\left | #1 \right \rangle}}
+\newcommand{\brat}[1]{\ensuremath{\left \langle  #1 \right | }}
+\newcommand{\ket}[1]{\left | #1 \right \rangle}
+\newcommand{\bra}[1]{\left \langle  #1 \right |}
+
+\newcommand{\nl}{\vskip 0.3cm}
+\newcommand{\np}{\vskip 1.3cm}
+
+\newcommand{\obar}[1]{\overline{#1}}
+\newcommand{\ubar}[1]{\underline{#1}}
+\newcommand{\psibar}{\bar{\psi}}
+\newcommand{\sigmatilde}{\tilde{\sigma}}
+
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\demu}[1]{\partial#1{\mu}}
+\newcommand{\denu}[1]{\partial#1{\nu}}
+\newcommand{\pder}[3]{\dfrac{\partial^{#1} #2}{\partial^{#1} #3}}
+\newcommand{\de}[1]{\frac{d^2#1}{(2\pi)^2}}
+
+\newcommand{\HRule}{\center{\rule{0.9\linewidth}{0.5mm}}}
+
+\newcommand{\ssection}[2]{\section{ \texorpdfstring{\textbf{#1}}{#2} }}
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+
+
+
+%opening
+\title{Modello di Gross-Neveu}
+\author{Federico Tonielli}
+
+\begin{document}
+
+\begin{titlepage}
+% \vspace{2 cm}
+  \begin{center}
+  \textsc{ \LARGE \textbf{Il modello di Gross-Neveu}  } \\[1 cm]
+  \Large{Seminario d'esame di Fisica Teorica 2 - \\
+  A.A. 2013-2014}
+  \vspace{0.5 cm}
+  \\[1.5 cm]
+  \begin{flushright} 
+  \Large 
+  Candidato:\\
+  \textsc{Federico Tonielli}
+  \end{flushright}
+  \vspace{2.5 cm}
+  \includegraphics[width=12cm]{cheruwino.eps}
+  \vfill
+  {\Large 24 Luglio 2014}
+  \end{center}  
+\end{titlepage}
+
+\blankpage
+
+\tableofcontents
+\blankpage
+
+\blankpage
+
+
+
+\ssection{Introduzione}{Introduzione}
+
+Il modello di Gross-Neveu (GN) è una teoria di N fermioni massless $ \psi_a $ in dimensione $1+1$ con interazioni quartiche attrattive; 
+è descritto dalla lagrangiana 
+\[
+ \mathcal{L} = \psibar_a i\slashed{\partial}\psi_a + \frac{g^2}{2}\left(\psibar_a\psi_a\right)^2
+\]
+\nl
+
+Per fissare la notazione, 
+\begin{itemize}
+ \item da ora in avanti si ometterà sia la somma su a (come già fatto) che l'indice a stesso
+ \item si intende assegnata la seguente rappresentazione dell'algebra di Clifford $[\gamma^{\mu},\gamma^{\nu}]_+ = 2\eta^{\mu\nu}\mathbb{1}$: 
+ $\gamma^0 = \sigma_2$ e $\gamma^1 = i\sigma_1$; la matrice $\gamma^5$, che anticommuta con le $\gamma^{\mu}$, è $\gamma^0\cdot\gamma^1 = \sigma_3$.
+\end{itemize}
+\nl
+
+Il modello GN è stato proposto come versione 1+1-dimensionale del modello 1+3-dimensionale di Nambu–Jona-Lasinio (NJ) \cite{Gross1974} perché:
+\begin{itemize}
+ \item ha libertà asintotica;
+ \item \textbf{includendo le correzioni ad 1 loop esibisce rottura spontanea della simmetria chirale mantenuta a livello classico}, a causa della quale il vuoto è un condensato di coppie fermione-antifermione ($f \bar{f}$) e i fermioni acquistano massa;
+ \item nello spettro della teoria c'è uno stato legato $f \bar{f}$;
+ \item esiste un limite in cui i risultati approssimati ad 1 loop diventano esatti e quindi sono sotto controllo;
+ \item la teoria è rinormalizzabile per semplice power counting (la costante di accoppiamento $g$ ha dimensione 0).
+\end{itemize}
+Le prime quattro caratteristiche sono in comune con l'altro modello e li rendono toy models della QCD a bassa energia, pur non prevedendo il confinamento; 
+la quinta è una peculiarità della dimensione bassa a cui GN è definito e costituisce il vantaggio di questo rispetto all'altro.
+\nl
+
+\textbf{Le proprietà di cui si vuole discutere sono la stabilità del modello e la 2°, 3° e 4° su elencate.} Per la discussione si è fatto riferimento all'esercizio 11.3 di \cite{Peskin1995}.
+Nella discussione dei risultati del calcolo dell'azione efficace ad 1 loop, verrà inoltre posto un accento sull'anomalia dell'invarianza di scala e sul modo peculiare con cui si manifesta in questa teoria.\\
+\vspace{0.4 cm}
+
+\ssection{Stabilità di GN e modello GN$\sigma$}{Stabilità}
+ Il potenziale è $- \frac{g^2}{2}\left(\psibar\psi\right)^2$, analogo di $- \frac{g^2}{2}\phi^4$; \textbf{essendo attrattivo la teoria non è stabile
+ a vista}.\\
+ Per dare un argomento intuitivo a favore della stabilità, si costruisce una nuova teoria che generi gli stessi correlatori di campi fermionici ma che possieda 
+ un campo scalare $\sigma$ in più (per questo motivo qui chiamato \emph{modello GN$\sigma$}): 
+ \begin{itemize}
+  \item il funzionale generatore è \[ Z[J,\bar{J}] = \int D\psi D\psibar\,\exp\left\{i\int d^2x\,  \psibar i\slashed{\partial}\psi + \frac{g^2}{2}\left(\psibar\psi\right)^2 + J\psi + \bar{J}\bar{\psi}\right\}\]
+  \item \textbf{con una trasformazione di Hubbard-Stratonovich si sostituisce l'interazione quartica con una con un campo ``ausiliario''}; questo campo ausiliario fa le veci di un operatore fermionico composito:
+   \[ 
+    Z[J,\bar{J}] \propto \int D\psi D\psibar D\sigma \exp\left\{i\int d^2x\,  \psibar i\slashed{\partial}\psi - g\sigma\psibar\psi -\frac{1}{2}\sigma^2 + J\psi + \bar{J}\bar{\psi}\right\}
+   \]
+  \item questa teoria, dove il campo ausiliario non ha parte cinetica e non corrisponde ad alcuna particella perché il suo propagatore non ha alcun polo, può esser vista
+  come il limite di una teoria di Yukawa con massa del mesone infinita:
+  \begin{align*}
+   \mathcal{L'} =  \psibar i\slashed{\partial}\psi - g'\phi\psibar&\psi + \frac{1}{2}\demu{_}\phi\demu{^}\phi-\frac{M^2}{2}\phi^2\\
+  &\Downarrow\ \ \Downarrow\\
+   \mathcal{L'} = \psibar i\slashed{\partial}\psi - g\sigma\psibar\psi& + \xcancel{\frac{1}{2M^2}\demu{_}\sigma\demu{^}\sigma} -\frac{1}{2}\sigma^2
+  \end{align*}
+ dove $\sigma = M\phi$, $M\to\infty$, $g=g'M^{-1}$ fissato.
+\end{itemize}
+Dato che la teoria di Yukawa è stabile per ogni valore della massa del mesone e della costante di accoppiamento, non è implausibile che anche il suo limite lo sia.
+\nl
+
+I calcoli ad 1 loop per il potenziale di $\sigma$ confermeranno l'argomento intuitivo.
+\np
+
+\ssection{Simmetrie di GN e GN$\sigma$}{Simmetrie}
+\textbf{La prima è la simmetria $\mathbb{Z}_2 $ chirale che agisce sugli indici spinoriali}:
+\begin{align*}
+ \begin{cases}
+  \psi(x) \to \gamma^5\psi(x) &\text{(GN)}\\
+  \psi(x) \to \gamma^5\psi(x),\ \sigma(x) \to - \sigma(x) &\text{(GN}\sigma\text{)}
+ \end{cases}
+ \ \Rightarrow\ \ \psibar \psi &\to -\psibar\psi,\ \psibar \gamma^{\mu}\demu{_}\psi \to \psibar \gamma^{\mu}\demu{_}\psi
+\end{align*}
+Essa cambia il segno relativo delle parti left e right dello spinore; la base scelta le distingue esplicitamente essendo come già detto 
+$\gamma^5 = \begin{pmatrix}
+              1 & 0 \\
+              0 & -1
+            \end{pmatrix}$.
+\nl 
+            
+\textbf{La seconda è la simmetria $U(N)$ che agisce sugli indici di flavour mescolando i fermioni}:
+\begin{align*}
+ \psi_a(x) \to M_{ab}\psi_b(x)\ \ \ (M\in SU(N)) \Rightarrow\ \ \ \psibar_a\psi_a \to \psibar_a\psi_a 
+\end{align*}
+\nl
+
+\textbf{La terza è l'invarianza di scala}, pur non essendo una simmetria in senso stretto.\\
+Le dimensioni in energia dei campi fermionici e bosonici sono $d_F = \frac{d-1}{2} = \frac{1}{2}$ e $d_B = \frac{d-2}{2} = 0$.\\ 
+La costante di accoppiamento $g^2$ ha invece dimensioni $d_{g^2} = d - 4\,\frac{d-1}{2} = 2 - d = 0$.\\ 
+La dimensione 2 è la massima a cui la teoria si mantiene rinormalizzabile; in più, essendo $d_{g^2} = 0$, la teoria è invariante per trasformazioni di scala:
+\begin{align*}
+ \begin{cases}
+  \psi(x) \to b^{1/2}\psi(bx) &\text{(GN)}\\
+  \psi(x) \to b^{1/2}\psi(bx),\ \sigma(x) \to b\sigma(bx) &\text{(GN}\sigma\text{)}
+ \end{cases}
+\end{align*}
+\np
+
+\ssection{Calcolo dell'azione efficace}{Calcolo}
+Per discutere dello stato delle simmetrie in teoria perturbativa, specialmente nel caso della rinormalizzazione di teorie con rottura spontanea, \textbf{il formalismo dell'azione efficace è utile perché essa si può costruire con la lagrangiana simmetrica e solo dopo aver rinormalizzato la teoria trovare il contenuto in particelle}: i valori di aspettazione di un campo sui vuoti possibili della teoria si trovano minimizzando l'azione con condizioni fisiche sulle simmetrie non rotte (Lorentz, traslazioni); la parte quadratica e i vertici di interazione della teoria fisica si trovano scegliendo un vuoto e shiftando i campi.\\
+Inoltre, arrangiando lo sviluppo in numero crescente di loops, i contributi all'azione efficace hanno tutti tutte le simmetrie dell'azione intera e questo rende possibile una discussione sulle simmetrie a un ordine finito dello sviluppo, cosa non vera nel caso dello sviluppo in potenze della costante di accoppiamento. 
+\nl
+
+La simmetria di interesse è la $\mathbb{Z}_2 $ chirale.\\
+Essa è ovviamente mantenuta all'ordine albero, essendo la parte quadratica della lagrangiana stabile e simmetrica.\\
+Per discutere del suo stato a 1 loop, \textbf{è possibile e conveniente lavorare con il modello GN$\sigma$ e considerare il potenziale efficace per il solo $\sigma$}: sarà $\mean{\sigma(x)}$ diverso da 0 su un vuoto se c'è rottura della simmetria $\sigma(x) \to - \sigma(x)$, mentre nel caso fermionico è l'operatore composito $\psibar(x)\psi(x)$ a poter mostrare se il vuoto è invariante o no.
+\nl
+
+Per impostare i calcoli,
+\begin{itemize}
+ \item conviene riscalare $\sigma \to \sigma/g_0$ per semplificare le espressioni, fissando così $Z_{\sigma}$; 
+ \item è sufficiente considerare configurazioni di campi classici uniformi spazialmente, in quanto per invarianza per traslazioni è da trovare $\mean{\sigma(x)} = m$ uniforme; il potenziale così ottenuto può esser visto come il primo termine di un'espansione in gradienti del campo;
+ \item svolgendo i calcoli con campi uniformi, le condizioni di normalizzazione si intenderanno assegnate a impulso nullo;
+ \item la normalizzazione dei due campi è in ogni caso fissata da termini che non calcoleremo; nei calcoli ad 1 loop dà contributi di ordine successivo e può quindi essere posta uguale ad 1.
+\end{itemize}
+\nl
+
+I diagrammi 1PI ad 1 loop sono
+\begin{center}
+\includegraphics{diagrams_eps/somma.eps}
+% 2extlegs_1.eps} + \includegraphics{diagrams_eps/4extlegs.eps} + \includegraphics{diagrams_eps/6extlegs.eps} + $\cdots$
+\end{center}
+dove su ogni gamba esterna c'è il campo classico $\sigma(x)$ e i diagrammi con un numero dispari di gambe esterne sono 0 per simmetria. Il contributo di questa somma è
+\begin{align*}
+ \sum_{n=2}^{\infty} &\frac{-1}{n}N\int d^d x_1 \dots d^d x_n\, \tr\left[ (-i  \sigma (x_1))\bra{x_1}\frac{i}{i\slashed{\partial}}\ket{x_2}(-i \sigma (x_2)) \dots \bra{x_n}\frac{i}{i\slashed{\partial}}\ket{x_1}\right]  = \\
+ & = -N \sum_{n=2}^{\infty} \frac{1}{n} \Tr\left[\left( \sigma(x)\frac{1}{i\slashed{\partial}}\right)^n\right] = -N \sum_{n=1}^{\infty} \frac{1}{n} \Tr\left[\left( \sigma(x)\frac{1}{i\slashed{\partial}}\right)^n\right] = \\
+ &= N \Tr\left[ \log \left( 1 -  \sigma(x)\frac{1}{i\slashed{\partial}} \right) \right] = + N\Tr \left[\log\left(i\slashed{\partial} -  \sigma(x)\right)\right] -\cancel{N\Tr \left[\log\left(i\slashed{\partial}\right)\right]}
+ \end{align*}
+ \begin{align}
+ & \Gamma\raisebox{-0.15cm}{$|_{\text{1 loop, }\sigma}$} = -iN\Tr \left[\log\left(i\slashed{\partial} -  \sigma(x)\right)\right] \label{eq:gamma1loop}
+ \end{align}  
+dove si è usato:
+\begin{itemize}
+ \item tr è la traccia solo sugli indici spinoriali e Tr è la traccia sull'intero spazio delle funzioni spinoriali;
+ \item $-1$ è per il loop fermionico;
+ \item $n$ è il fattore di simmetria del diagramma;
+ \item $N$ è perché ognuno dei flavours produce un loop con lo stesso contributo a $\Gamma$;
+ \item si è sottintesa la prescrizione per la causalità;
+ \item il termine $n=1$ della sommatoria può essere aggiunto perché, contenendo una sola matrice $\gamma$, è identicamente nullo;
+ \item le costanti indipendenti dai campi classici possono essere omesse dall'azione efficace.
+\end{itemize}
+\nl
+
+Con campo uniforme spazialmente il calcolo esatto è:
+\begin{align*}
+ \Tr &\left[\log\left(i\slashed{\partial} -  \sigma\right)\right] = \int \de{p}\bra{p}\tr\left[\log\left(i\slashed{\partial} -  \sigma\right)\right]\ket{p} = \int d^2x \de{p} \tr\left[\log\left(\slashed{p} -  \sigma\right)\right] = \\
+ & = \int d^2x \de{p} \log \left[ \det\left (\slashed{p} -  \sigma\right)\right] = \int d^2x \de{p} \log \left( -p^2 -i\epsilon + \sigma^2 \right)
+\end{align*}
+
+L'integrale $ \int d^2x$ si omette da ora in poi.
+\nl
+
+Dopo il prolungamento nell'Euclideo si ottiene:
+\begin{align*}
+%  \int &\de{p}\log\left( -p^2 -i\epsilon + \sigma^2 \right) \stackrel{\star}{=} \int \de{p} \int_{0}^{\sigma^2}\!\!\!dx\,\frac{1}{x-p^2-i\epsilon} = \\
+%       &= i\int \frac{d^2p_E}{(2\pi)^2} \int_{0}^{\sigma^2}\!\!\!dx\,\frac{1}{x+p_E^2} = \frac{i}{4\pi}\int_{0}^{\Lambda^2}\!\!\!dy\int_{0}^{\sigma^2}\!\!\!dx\,\frac{1}{x+y} = \\
+%       &= \frac{i}{4\pi}\left[(x+\sigma^2)(\log(x+\sigma^2)-1)-x(\log x-1)\right]_0^{\Lambda^2} = \\
+%       &\!\!\!\stackrel{\Lambda\to\infty}{=} \frac{i}{4\pi}\left[\sigma^2\log\Lambda^2 - \sigma^2 (\log \sigma^2 -1)\right]
+& i\int \frac{d^2p_E}{(2\pi)^2} \log\left(p_E^2 + \sigma^2\right) = \frac{i}{4\pi} \int_{0}^{\Lambda^2}\!\!\!dx\,\log\left(x+\sigma^2\right) = \frac{i}{4\pi}\left[x\log x - x\right]_{\sigma^2}^{\sigma^2 + \Lambda^2} = \\
+& = \frac{i}{4\pi}\left[ \left(\sigma^2+ \Lambda^2\right)\log\left(\sigma^2+\Lambda^2\right) -\sigma^2\log\sigma^2 - \cancel{\Lambda^2} \right] = \\
+& = \frac{i}{4\pi}\left[ \sigma^2 \log \Lambda^2 + \sigma^2 \log\left(1+\frac{\sigma^2}{\Lambda^2}\right) + \cancel{\Lambda^2 \log \Lambda^2} + \Lambda^2 \log \left(1+\frac{\sigma^2}{\Lambda^2}\right)-\sigma^2\log\sigma^2\right] = \\
+& \!\!\!\stackrel{\Lambda\to\infty}{=} \frac{i}{4\pi}\left[ \sigma^2 \log \Lambda^2 + 0 + \sigma^2 -\sigma^2\log\sigma^2\right]
+\end{align*}
+dove si sono sottratte le costanti indipendenti da $\sigma$.\\
+Il potenziale efficace che si ottiene dai contributi a 0 e 1 loop è quindi 
+\[
+ V(\sigma)\raisebox{-0.15cm}{$|_{\text{0+1 loop}}$} = \frac{1}{2g_0^2}\sigma^2 - (-i)i\frac{N}{4\pi}\left[\sigma^2\log\Lambda^2 - \sigma^2 (\log  \sigma^2 -1)\right]
+\]
+
+\textbf{La condizione di normalizzazione sul potenziale si dichiara fissando un punto di sottrazione $\sigma_0$}, in analogia con quanto si fa nello spazio degli impulsi per evitare le divergenze infrarosse \cite{Coleman1973}:
+\[ 
+V''(\sigma_0) = \frac{1}{g^2}
+\]
+Dopo averla imposta alla somma dei contributi a 0 e 1 loop si ottiene:
+\begin{align}
+ \frac{1}{g_0^2} = \frac{1}{g^2} - \frac{N}{\pi} - \frac{N}{\pi}\log\left(\frac{\sigma_0}{\Lambda}\right) \label{eq:rinormalizzazione}\\
+ V(\sigma)\raisebox{-0.15cm}{$|_{\text{0+1 loop}}$} = \frac{1}{2g^2}\left(1-\frac{3g^2N}{2\pi}\right)\sigma^2 + \frac{N}{4\pi}\sigma^2\log\left(\frac{\sigma^2}{\sigma_0^2}\right) 
+ \label{eq:pot1loop}
+ \end{align}
+\nl
+
+Si osserva che:
+\begin{itemize}
+ \item il potenziale \ref{eq:pot1loop} ha minimo, quindi \textbf{a 1 loop la teoria è ancora stabile};
+ \item il minimo è per 
+ \begin{equation}
+ \sigma^2 \equiv m^2 = \sigma_0^2\,\exp\left[1-\frac{\pi}{g^2N}\right] \neq 0 \label{eq:minimo}
+ \end{equation} quindi \textbf{la simmetria è rotta spontaneamente}. La discussione completa del fenomeno è rimandata alla sezione successiva.
+\end{itemize}
+Scegliendo il minimo positivo del potenziale ed effettuando lo shift $\sigma \to m + \sigmatilde$ si trova
+\begin{align}
+ V(\sigmatilde)\raisebox{-0.15cm}{$|_{\text{0+1 loop}}$} = \frac{N}{2\pi}\sigmatilde^2 +\frac{N}{6\pi m}\sigmatilde^3 + \dots \label{eq:potenziale}
+\end{align}
+\nl
+
+ Si procede ora al calcolo della dipendenza dall'impulso della parte quadratica rispetto a $\sigmatilde$ dell'azione efficace.\\
+ Il contributo proviene da $\Tr \left[\log\left(i\slashed{\partial} -  \sigma(x)\right)\right] = \Tr \left[\log\left(i\slashed{\partial} - m - \sigmatilde(x)\right)\right]$.\\
+ Degli infiniti diagrammi che sommati danno questa espressione, ciascuno dopo lo shift contribuisce alla parte quadratica  di $\sigmatilde$; 
+ siccome però \textbf{la formula che si ottiene dopo lo shift è uguale a quella che si otterrebbe aggiungendo un termine di massa in partenza}, la parte quadratica rispetto a $\sigmatilde$ corrisponde al diagramma \\
+ \begin{center}\includegraphics{diagrams_eps/2extlegs_2.eps}\end{center}
+ con un propagatore fermionico massivo sostituito a quello massless.
+ \begin{align*}
+  \Gamma\raisebox{-0.15cm}{$|_{\sigmatilde\text{, quadr.}}$} &= \frac{1}{2}\sigmatilde(p)\Pi(p)\sigmatilde(-p)\\
+  \Pi(p)\raisebox{-0.15cm}{$|_{\text{1 loop}}$} & = -i\cdot 2\cdot\frac{1}{2}(-1)N \int \de{k}\, (-i)^2 \tr\left[ \frac{i}{\slashed{k}-m}\,\frac{i}{\slashed{k}-\slashed{p}-m} \right] = \\
+  & = iN \int\de{k}\,\frac{\tr\left[\left(\slashed{k}+m\right)\left(\slashed{k}-\slashed{p}+m\right)\right]}{\left(k^2-m^2+i\epsilon\right)\left((k-p)^2-m^2+i\epsilon\right)} = \\
+  %   & = 2iN \int\de{k}\, \frac{k\cdot(k-p)+m^2}{\left(k^2-m^2+i\epsilon\right)\left((k-p)^2-m^2+i\epsilon\right)} = \\
+  & = 2iN \int\de{k} \int_0^1 d\alpha\, \frac{k\cdot (k-p)+m^2}{\left[k^2-2\alpha p\cdot k + \alpha p^2 -m^2 + i\epsilon\right]^2} = \\
+  & = 2iN \int\de{k'} \int_0^1 d\alpha\, \frac{(k'+\alpha p)\cdot (k'-(1-\alpha )p) + m^2}{\left[(k')^2 + \alpha (1 - \alpha ) p^2 -m^2 + i \epsilon \right]^2} = \\
+  & = \frac{2iN}{4\pi}\,i \int_0^{\Lambda^2} dx \int_0^1 d\alpha\,\frac{-x -\alpha (1 - \alpha ) p^2 + m^2}{\left[x - \alpha (1 - \alpha ) p^2 + m^2 \right]^2} = \\
+  & \stackrel{\star}{=} \frac{-N}{2\pi} (-1) \int_0^1 d\alpha\left\{\log \frac{ B^2 + \Lambda^2}{B^2} -2 + \cancel{\frac{2B^2}{B^2 + \Lambda^2}}\right\} =  \\
+  & = -\frac{N}{\pi} + \frac{N}{2\pi}\int_0^1 d\alpha \left\{\log\frac{\Lambda^2}{B^2} + \cancel{\log \left(1+\frac{B^2}{\Lambda^2}\right)}  \right\} = \\
+  & = -\frac{N}{\pi} - \frac{N}{2\pi}\log \frac{m^2}{\Lambda^2} - \frac{N}{2\pi}\int_0^1 d\alpha\, \log \left( 1 - \alpha (1 - \alpha ) \frac{p^2}{m^2} \right) 
+ \end{align*}
+dove si è usato:
+\begin{itemize}
+ \item -1 e N hanno la stessa origine di prima, $\frac{1}{2}$ è il fattore di simmetria;
+ \item il 2 a fattore è convenzionale;
+ \item con $d=2$, $\tr\left[\gamma^{\mu}\gamma^{\nu}\right] = 2 \eta^{\mu\nu} \mathbb{1}$;
+ \item in $\star$ si è estratto un -1 dal numeratore;
+ \item si è posto $ B^2 \equiv -\alpha (1 - \alpha ) p^2 + m^2 $. 
+\end{itemize}
+\nl
+
+Il potenziale con $p=0$ deve essere uguale a quello \eqref{eq:potenziale} già calcolato; sostituendo infatti le condizioni \eqref{eq:rinormalizzazione} e \eqref{eq:minimo} dentro
+\[\Pi(p=0)\raisebox{-0.15cm}{$|_{\text{0+1 loop}}$} = -\frac{1}{g_0^2} -\frac{N}{\pi} - \frac{N}{\pi}\log \frac{m}{\Lambda}\] si trova $- \frac{N}{\pi}$, come deve essere.\\
+La parte quadratica rinormalizzata è quindi
+\begin{equation}
+ \Pi(p)\raisebox{-0.15cm}{$|_{\text{0+1 loop}}$} = -\frac{N}{\pi}\left[1+\frac{1}{2}\int_0^1 d\alpha\, \log \left( 1 - \alpha (1 - \alpha ) \frac{p^2}{m^2} \right)\ \right]
+ \label{eq:quadratica}
+\end{equation}
+\np
+
+\ssection{Risultati del calcolo}{Risultati}
+In primo luogo si osserva che l'esistenza della rottura di simmetria, possibile pur essendo in dimensione 2 perché la simmetria è discreta, è stata dimostrata sommando infiniti diagrammi. \textbf{Il valore di aspettazione \ref{eq:minimo} del campo $\sigma$ ottenuto è una funzione non analitica in $g$ }e la sua serie di potenze centrata in $g=0$ è identicamente nulla: la rottura di simmetria è un \emph{effetto non perturbativo}, che non avremmo visto cioé sviluppando in potenze di $g$. Essa è inoltre presente per qualunque valore di $g$.\\
+Sommare infiniti diagrammi è necessario però non solo a posteriori: \textbf{ciascun termine dela somma}, in assenza di un termine di massa, \textbf{è divergente nell'infrarosso} come $\int d^2p \frac{1}{p^n}$, dove n è il numero di propagatori interni al loop. \textbf{Solo sommandoli insieme si ottiene un risultato non infinito per $p=0$}. \\
+Si nota infine che questo risultato è analogo a quello della teoria BCS (da cui il modello NJ è stato costruito per analogia): un'interazione quartica attrattiva tra fermioni genera un mass gap non analitico nell'accoppiamento $g$ e ce ne si accorge minimizzando un funzionale energia. Il vuoto è un condensato chirale di coppie $f\bar{f}$ e la comparsa del mass gap si può spiegare in modo pittorico come dovuto al mescolamento tra le parti left e right dei fermioni causato dal condensato.
+\nl
+
+In secondo luogo si osserva che \textbf{$\sigma_0 \leftrightarrow m$ è un nuovo parametro dimensionato che compare nella teoria}, che in partenza non ne aveva: la sua presenza
+nell'azione efficace \textbf{rompe l'invarianza di scala della teoria originale}.\\
+Come si vede in \ref{eq:quadratica}, esso compare in un termine non locale nei campi e quindi non può essere eliminato con un controtermine locale. La simmetria è dunque anomala e non esiste alcuna procedura di regolarizzazione che la preservi. Una ragione intuitiva per cui ciò deve esser vero è che, \textbf{per curare divergenze ultraviolette, serve 
+dare una scala di impulsi rispetto a cui confrontare p per dire che ``è grande''}, con cui le funzioni della teoria avranno la forma $p^xf(p/\mu)$. Ciò è vero, ad esempio, tanto 
+con l'introduzione di un cutoff (che da solo rompe l'invarianza di scala!) sia in regolarizzazione dimensionale (in dimensione $d-\epsilon$ i parametri in origine 
+adimensionali non lo sono più).\\
+Questa situazione, come del resto sembra, è del tutto generale: in tutte le teorie in cui le costanti adimensionali originali diventano nell'azione efficace \emph{running coupling constants} dipendenti dall'impulso e dalla scala di rinormalizzazione l'invarianza di scala è anomala.
+\nl
+
+Questa anomalia assume, nel caso in esame, una forma particolare perché contestualmente ad essa la rottura di simmetria dà significato fisico al parametro aggiunto: mentre in altri casi è sempre possibile modificare la scala di rinormalizzazione, la costante di accoppiamento ad essa definita e la normalizzazione dei campi in modo che le grandezze fisiche non cambino, qui \textbf{c'è una combinazione di $g$ e $\sigma_0$, $m$, che è misurabile (è la massa dei fermioni) e quindi è fissata indipendentemente dai valori assunti dai due parametri}.\\
+\textbf{Siccome nella teoria originale c'era un solo parametro libero fisico ($g$) e ad 1 loop è comparso $m$} a causa della rottura di simmetria, per mantenere un solo parametro \textbf{$g$ deve cancellarsi e non entrare nell'azione efficace} se non attraverso $m$; questo è quello che succede, come si verifica parzialmente da \ref{eq:potenziale}. Questo fenomeno è la \emph{dimensional transmutation}: il il parametro adimensionale $g$ della teoria nuda viene ``barattato'' nella teoria fisica con uno dimensionato $m$.
+\nl
+
+Infine, si nota che il campo $\sigma$ è a quest'ordine diventato propagante: \textbf{$\Pi(p)=0$ ha soluzione per $p^2 = 4m^2 \equiv m_{\sigma}^2$}.\\
+Il polo del propagatore di $\sigma$ lo si ritrova nelle ampiezze 
+\begin{center}
+\includegraphics{diagrams_eps/G4_1.eps} \hspace{0.05\paperwidth} \hspace{0.05\paperwidth}  \includegraphics{diagrams_eps/G4_2.eps} 
+\end{center}
+che contribuiscono a 1 loop a $G(p_1,p_2,p_3,p_4)$: esso corrisponde ad una risonanza anche del modello GN originale, che si interpreta come stato legato di $f\bar{f}$.                                                                    
+Nella prossima sezione verrà dato un argomento per mostrare perché la binding energy di questo stato legato, a questo ordine dello sviluppo, è nulla.
+\np
+
+\ssection{Ordini successivi e sviluppo in 1/N}{Sviluppo}
+L'osservazione cruciale per valutare il contributo relativo degli ordini successivi dello sviluppo è che $m$ dipende da $g$ e $N$ solo attraverso la combinazione $g^2N$. \textbf{Ha senso allora definire una nuova costante di accoppiamento $\lambda \equiv g^2N$ e il limite $N \to \infty$, $\lambda$ fisso}: questo limite non inficia l'esistenza della rottura spontanea.\\
+Le lagrangiane di GN e GN$\sigma$ si scrivono come:
+\begin{align*}
+ \mathcal{L}_{GN}& = \psibar_a i\slashed{\partial}\psi_a + \frac{\lambda}{2}\frac{1}{N}\left(\psibar_a\psi_a\right)^2\\
+ \mathcal{L}_{GN\sigma}& = \psibar_a i\slashed{\partial}\psi_a - N\frac{1}{2\lambda}\sigma^2 - \sigma\psibar_a\psi_a
+\end{align*}
+La potenza di $N$ di un diagramma di GN$\sigma$ si calcola così:
+\begin{itemize} 
+\item il propagatore del campo $\sigma$ porta un fattore $N^{-1}$;
+\item un loop di solo linee fermioniche porta un fattore $N$.
+\end{itemize}
+\nl
+
+È evidente allora che \textbf{l'ordine albero e i diagrammi sommati per calcolare parte dell'azione efficace a 1 loop 
+siano gli \emph{unici} con gambe esterne $\sigma$ ad avere a fattore $N^{+1}$}, perché non esiste un diagramma 1PI con due loops fermionici indipendenti e quindi gli ordini successivi hanno in più solo propagatori $\sigma$, come si vede con qualche esempio:\\
+\begin{center}
+ \includegraphics{diagrams_eps/2extlegs_2loops.eps} \hspace{0.07\paperwidth} \includegraphics{diagrams_eps/2extlegs_3loops}
+\end{center}
+
+Ne segue che nel limite suddetto i risultati proposti sono esatti: quello trovato è l'ordine 0 nello sviluppo in $N^{-1}$.\nl
+
+Sotto questa nuova luce, è possibile capire perché $m_{\sigma}/2m = 1$: l'ordine più basso dello sviluppo è per $N^{-1}=0\rightarrow g^2 = \lambda N^{-1} = 0$; se la costante di accoppiamento dell'interazione attrattiva è nulla 
+ci si aspetta che lo sia anche la binding energy dello stato legato. Siccome, per la dimensional transmutation, $m_{\sigma}/2m$ non può dipendere da $\lambda$, agli ordini successivi diventerà $\displaystyle\frac{m_{\sigma}}{2m} = 1- \frac{C}{N} + o(N^{-1})$, $C>0$.
+\np
+\HRule
+
+% \nocite{*}
+\bibliography{library}{}
+\bibliographystyle{amsplain}
+\end{document}

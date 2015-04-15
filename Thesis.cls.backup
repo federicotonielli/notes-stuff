@@ -65,17 +65,15 @@
   \space \number\year}
   
   
-\RequirePackage[utf8]{inputenc} % Allows the use of international characters (e.g. Umlauts)
-  
-
-%---packages to modify page spacings-------------------------------------------------------
 \usepackage{setspace}
 \onehalfspacing
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2.0ex plus0.5ex minus0.2ex}
-\usepackage{fullpage}
-\usepackage{afterpage}
+
+
 \usepackage{vmargin}
+
+\RequirePackage[utf8]{inputenc} % Allows the use of international characters (e.g. Umlauts)
 
 %----------------------------------------------------------------------------------------
 %	MARGINS
@@ -114,8 +112,7 @@
 \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 
-%---packages for math operators, math spacing and symbols----
-\usepackage{amsmath,amsfonts,amssymb,amscd,amsthm,xspace,xfrac,slashed,cancel}
+\usepackage{amsmath,amsfonts,amssymb,amscd,amsthm,xspace}
 \theoremstyle{plain}
 \newtheorem{example}{Example}[chapter]
 \newtheorem{theorem}{Theorem}[chapter]
@@ -147,7 +144,6 @@
 \newcommand{\ubar}[1]{\underline{#1}}
 \newcommand{\psibar}{\bar{\psi}}
 \newcommand{\sigmatilde}{\tilde{\sigma}}
-%-------------------------------------------------------------
 
 
 \usepackage[centerlast,small,sc]{caption}
@@ -172,13 +168,7 @@
 \newcommand{\np}{\vskip 1.3cm}
 
 
-%---packages for graphic shit-------------------
-\usepackage[all]{xy}
 \usepackage{graphicx}
-%-----------------------------------------------
-
-
-\usepackage{enumitem}
 
 
 \usepackage{epstopdf}
@@ -231,9 +221,25 @@
 \newcommand*{\keywords}[1]{\def\keywordnames{#1}}
 
 
+\usepackage{fullpage}
 
 
+\usepackage{hyperref}
 
+
+\usepackage[all]{xy}
+
+
+\usepackage{enumitem}
+
+
+\usepackage{xfrac}
+
+
+\usepackage{slashed}
+
+
+\usepackage{cancel}
 
 %----------------------------------------------------------------------------------------
 %	DOCUMENT VARIABLES
