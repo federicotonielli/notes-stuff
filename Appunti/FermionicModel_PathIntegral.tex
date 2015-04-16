@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{amsart}
+\documentclass[a4paper,11pt]{article}
 
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{mathtools}
@@ -82,11 +82,23 @@
  Here we present the general model under study in a second quantized formalism.  Moreover, the full equation of motion of the two-point correlation matrix at equal times is derived.
  
   \subsection{Quantum Master Equation in Majorana form}
-  We consider an open quantum system of fermions on a D-dimensional lattice; we assume its dynamics to be described by a Markovian Quantum Master Equation (herein after referred as QME), which in the Lindblad form reads
-  \[\dot{\ro}=\mathbb{L}[\ro]=-i\left[H,\ro\right]+\sum_{\alpha}\left[L_{\alpha}^{ }\ro L_{\alpha}^+ - \frac{1}{2}L_{\alpha}^+L_{\alpha}^{ }\ro - \frac{1}{2}\ro L_{\alpha}^+L_{\alpha}^{ }\right]  \]
-  Furthermore, following \cite{Eisert2010}, we assume the Hamiltonian to be quadratic and the Lindblad operators to be linear in the fermion fields $a_i^{ }$ and $a_i^+$. 
-  \[ H = a_j^+M_{jk}a_k^{ } \equiv a^+Ma \]
-  Since the generator $\mathbb{L}$ of the dynamical semigroup is quadratic in the fermion fields,  
+   We consider an open quantum system of Dirac fermions on a D-dimensional lattice; the creation and annihilation operators for these fermions are $\left \{ a_i^{ },a_i^+, \in \mathbb{Z}^D \right \} $\footnote{ The usual hat to distinguish between operators and numbers will always be omitted, as numbers (matrix elements) will be referred to using capital letters.} and they obey the usual anticommutation relations $\left\{a_i^{ },a_j^{ }\right\} = \left\{a_i^{+},a_j^+\right \}=0$ and $\left\{a_i^{ },a_j^+\right \} = \delta_{ij}\,id $.\\  We assume its dynamics to be described by a Markovian Quantum Master Equation (herein after referred as QME), which in the Lindblad form reads
+  \[\dot{\ro}=\mathcal{L}[\ro]=-i\left[H,\ro\right]+\sum_{\alpha}\left[L_{\alpha}^{ }\ro L_{\alpha}^+ - \frac{1}{2}L_{\alpha}^+L_{\alpha}^{ }\ro - \frac{1}{2}\ro L_{\alpha}^+L_{\alpha}^{ }\right]  \]
+  Furthermore, we will assume the Hamiltonian to be quadratic and the Lindblad operators to be linear in the fermionic fields  and , without any other constraint: 
+  \begin{subequations}
+  \renewcommand{\theequation}{\theparentequation.\arabic{equation}}
+  \begin{align}
+   H & = a_j^+M_{jk}a_k^{ } \equiv a^+Ma \\ 
+   L_{\alpha} & = P^{ }_{\alpha j}a_j^{ } + Q^{ }_{\alpha j}a_j^+ \Rightarrow L \equiv P a + Q a^+
+   \label{eq:quadr_dyn}
+  \end{align}
+  \end{subequations}
+ where a compact notation has been introduced in order to simplify next calculations' form. \\
+ Following \cite{Eisert2010}, it is convenient to describe the system using Majorana fermionic operators
+ \begin{align}
+  c_{j,1}=a_j^{ }+a_j^{+} \quad \quad c_{j,2} = i\left(a_j^{ }-a_j^{+}\right)
+ \end{align}
+
   
   \subsection{Equation of motion for the Covariance Matrix from QME}
  \section{Path Integral reformulation of the QME}
