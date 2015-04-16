@@ -1,6 +1,5 @@
 \documentclass[a4paper,11pt]{amsart}
 
-
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{mathtools}
 \usepackage{vmargin}
@@ -11,7 +10,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}   
 \usepackage[english]{babel}
-\usepackage{fullpage}
+% \usepackage{fullpage}
 \usepackage{hyperref}
 
 \usepackage{enumitem}
@@ -48,6 +47,7 @@
 \newcommand{\brat}[1]{\ensuremath{\left \langle  #1 \right | }}
 \newcommand{\ket}[1]{\left | #1 \right \rangle}
 \newcommand{\bra}[1]{\left \langle  #1 \right |}
+\newcommand{\ro}{\rho}
 
 \newcommand{\nl}{\vskip 0.3cm}
 \newcommand{\np}{\vskip 1.3cm}
@@ -81,7 +81,9 @@
  \section{The second-quantized model}
  Here we present the general model under study in a second quantized formalism.  Moreover, the full equation of motion of the two-point correlation matrix at equal times is derived.
   \subsection{Quantum Master Equation in Majorana form}
-  We consider an open quantum system of fermions on a D-dimensional lattice, whose dynamics is described by a Markovian Quantum Master Equation (QME hereby) 
+  We consider an open quantum system of fermions on a D-dimensional lattice; we assume its dynamics to be described by a Markovian Quantum Master Equation (QME hereby), which in the Lindblad form reads
+  \[\dot{\ro}=\mathbb{L}[\ro]=-i\left[H,\ro\right]+\sum_{\alpha}\left[L_{\alpha}^{ }\ro L_{\alpha}^+ - \frac{1}{2}L_{\alpha}^+L_{\alpha}^{ }\ro - \frac{1}{2}\ro L_{\alpha}^+L_{\alpha}^{ }\right]  \]
+  Here, following \cite{Eisert2010}
   \subsection{Equation of motion for the Covariance Matrix from QME}
  \section{Path Integral reformulation of the QME}
   \subsection{Keldysh action for Majorana fermions}
@@ -93,6 +95,6 @@
     \subsection{``Majorana doubling'' trick}
    
    
-\bibliography{library}{}
-\bibliographystyle{amsplain}  
+\bibliography{../library}{}
+\bibliographystyle{unsrtnat}  
 \end{document}
