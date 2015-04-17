@@ -93,7 +93,12 @@
    L_{\alpha} & = P^{ }_{\alpha j}a_j^{ } + Q^{ }_{\alpha j}a_j^+ \Rightarrow L \equiv P a + Q a^+ \label{eq:quadr_lindb}
   \end{align}
   \end{subequations}
- where a compact notation\footnote{Henceforth, the order at which symbols appear in the expressions also indicates the order of index contraction: e.g. $Mc\rightarrow M_{ij}a_j$ and $cM \rightarrow a_j M_{ji}$.} has been introduced in order to simplify the form of next calculations. \np
+ where a compact notation has been introduced in order to simplify the form of next calculations: 
+ \begin{itemize}
+  \item indices are omitted and the order of symbols in the expressions also indicates the order of index contraction (e.g. $Mc\rightarrow M_{ij}a_j$ and $cM \rightarrow a_j M_{ji}$);
+  \item operators and matrices of numbers appear on the same footing in the formulae, according to the already mentioned rules of notations; there will be no need to distinguish between index-carrying and index-free operators/numbers as it will be always clear from the context.
+ \end{itemize}
+  \np
  Following \cite{Eisert2010}, it is convenient to describe the system using Majorana fermionic operators
  \begin{align}
   c_{j, 1} = a_j^{ }+a_j^{+} \quad \quad \quad
@@ -122,14 +127,14 @@
        &\ \ \ +c_1\frac{M'-(M')^T}{2}c_1+c_2\frac{M'-(M')^T}{2}c_2\bigg]\notag
    \end{align*}
    where $M$ has been separated into its diagonal part $D$ and the rest $\displaystyle M'$, $c_rDc_r = \sum_iD_{ii}c_{i,r}^2 = \sum_i D_{ii}$ is a constant and can be omitted, $\displaystyle c_rM'c_s = - c_s(M')^Tc_r = \frac{1}{2}c_rM'c_s - \frac{1}{2}c_s(M')^Tc_r$ since $M'$ has zero diagonal and different fermions anticommute.\\ Finally, the general form for the Hamiltonian is, using that $M$ is an hermitian matrix:
-%     \begin{subequations}
+    \begin{subequations}
 %        \renewcommand{\theequation}{\theparentequation.\arabic{equation}}
-    \begin{equation}
+%     \begin{equation}
     \label{eq:quadr_ham_majorana}
-%     \begin{align}
-     \left\{
-     \begin{aligned}
-     & H = icAc\\
+    \begin{align}
+%      \left\{
+%      \begin{aligned}
+     & H \equiv icAc\\
      & A = \left(
      \begin{array}{cc}
        -i\frac{M'-(M')^T}{2} & -D - \frac{M'+(M')^T}{2} \\
@@ -142,12 +147,12 @@
         D+\Re[M'] & \Im[M']
         \end{array}
         \right)
-      \end{aligned}
-      \right .
-     \end{equation}
-%     \end{align}
-% \end{subequations}
-where $A$ is a generic real antisymmetric matrix.\\[0.3cm] Now we'll do the same for the Lindblad operators \ref{eq:quadr_lindb}:
+%       \end{aligned}
+%       \right .
+%      \end{equation}
+    \end{align}
+\end{subequations}
+and thus $A$ is a generic real antisymmetric matrix.\\[0.3cm] Now we'll do the same for the Lindblad operators \ref{eq:quadr_lindb}:
 \begin{align*}
  L &= P a + Q a^+=\\
    &= (P+Q)c_1 +i(-P+Q)c_2\\
@@ -155,17 +160,21 @@ where $A$ is a generic real antisymmetric matrix.\\[0.3cm] Now we'll do the same
    &= (P^*+Q^*)c_1+i(P^*-Q^*)c_2  
 \end{align*} 
 where $X^*$ is merely the complex (\ubar{not hermitian!}) conjugate of a complex matrix $X$. \\We recall that $P$ and $Q$ are rectangular matrices whose number of rows is the number of independent channels $L_{alpha}$ and whose number of coloumns is the number of lattice sites (and hence of the independent fermionic operators). From this, we get
-\begin{equation}
+\begin{subequations}
+% \begin{equation}
 \label{eq:quadr_lindb_majorana}
-\left\{ 
- \begin{aligned}
-    L    &= Rc, \quad \quad \quad \quad  L^+  = R^*c,\\
-    L^+L &= cR^+Rc \equiv cSc \\
-    R &= \left(\begin{array}{cc} P+Q & -iP+iQ\end{array}\right) \\
-    S &  =\left(\begin{array}{cc} (P+Q)^+(P+Q) & shit\\shit&shit \end{array}\right)\\
- \end{aligned}
-\right.
-\end{equation}
+% \left\{ 
+\begin{align}
+%  \begin{aligned}
+    &L    \equiv Rc, \quad \quad \quad \quad  L^+  = R^*c,\\
+    &R = \left(\begin{array}{cc} P+Q & -iP+iQ\end{array}\right) \\[0.3cm]
+    &L^+L = cR^+Rc \equiv cSc \\
+    &S =\left(\begin{array}{cc} (P+Q)^+(P+Q) & -i(P+Q)^+(P-Q)\\i(P-Q)^+(P+Q)&(P-Q)^+(P-Q) \end{array}\right)
+%  \end{aligned}
+\end{align} 
+% \right.
+% \end{equation}
+\end{subequations}
   
 
   
