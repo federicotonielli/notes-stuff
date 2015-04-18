@@ -165,7 +165,7 @@
    L^+&= P^*a^++Q^*a=\\
      &= (P^*+Q^*)c_1+i(P^*-Q^*)c_2  
     \end{align*}  
-   where $X^*$ is merely the complex (\ubar{not hermitian!}) conjugate of a complex matrix $X$. \\We recall that $P$ and $Q$ are rectangular matrices whose number of rows is the number of independent channels $L_{alpha}$ and whose number of coloumns is the number of lattice sites (and hence of the independent fermionic operators). From this, we get
+   where $X^*$ is merely the complex (\ubar{not hermitian!}) conjugate of a complex matrix $X$. \\We recall that $P$ and $Q$ are rectangular matrices whose number of rows is the number of independent channels $L_{\alpha}$ and whose number of coloumns is the number of lattice sites (and hence of the independent fermionic operators). From this, we get
   \begin{subequations}
 % \begin{equation}
   \label{eq:quadr_lindb_majorana}
@@ -209,15 +209,19 @@
   \end{align*}
   A way to compute  $\mathcal{L}^+\!\!\left[c\otimes c\right]$ and $\mathcal{L}^+\!\!\left[ (c\otimes c)^T\right]$ that requires little effort consists in the following algorithm:
   \begin{enumerate}
-   \item keep the matrix structure explicit, identifying only the first and last index, with $ \circ$ and $\bullet$ respectively;
-   \item make the order of contractions explicit using arrows, from left to right;
+   \item keep the matrix structure explicit, identifying only the first and last index, with $ \circ$ and $\bullet$ respectively; \ubar{these indices are never contracted}: if they appear in the middle of an expression, the index contraction of all the other operators/matrices starts before them and ends after them, if necessary;
+%    \item make the order of contractions explicit using arrows, from left to right;
    \item start swapping fermionic operators in order to have $ \circ$ at the beginning and $\bullet$ at the end of the expression respectively; 
-   \item after each swap the original term gets a -1 factor and a new term is generated, where the two operators are replaced by their anticommutator; since this is in turn 2 times a delta of the indices, its effect will be to replace the contracted index with either $ \circ$ or $\bullet$.
+   \item after each swap the original term gets a -1 factor and a new term is generated, where the two operators are replaced by their anticommutator; since this is in turn 2 times a delta of the indices, its effect will be to replace the contracted index with either $ \circ$ or $\bullet$ 
   \end{enumerate}\nl
   The detailed calculations are:
-  \begin{align*}
-   &\mathcal{L}^+\left[c\circ\, c\bullet\right] = - c\ra A\ra c c\circ\, c\bullet
-  \end{align*}
+%   \begin{equation}
+   \begin{align*}
+   \mathcal{L}^+\!\!\left[c^{ }_{\circ}c^{ }_{\bullet}\right] &= - \left[cAc, c^{ }_{\circ} c^{ }_{\bullet}\right] +cR^+c^{ }_{\circ} c^{ }_{\bullet}Rc-\frac{1}{2}\left\{cSc,c^{ }_{\circ}c^{ }_{\bullet}\right\}\\
+   cAcc^{ }_{\circ} c^{ }_{\bullet} &=-cAc^{ }_{\circ}cc^{ }_{\bullet} + 2cA^{ }_{\circ} c^{ }_{\bullet} = \\ &=+c^{ }_{\circ}cAc c^{ }_{\bullet} + 2cA^{ }_{\circ} c^{ }_{\bullet} -2 A^{ }_{\circ}cc^{ }_{\bullet}\\ &=+c^{ }_{\circ}cAc c^{ }_{\bullet} + 2A^T_{\circ}c c^{ }_{\bullet}-2 A^{ }_{\circ}cc^{ }_{\bullet}\\
+   c^{ }_{\circ} c^{ }_{\bullet} cAc &= \dots = + +c^{ }_{\circ}cAc c^{ }_{\bullet}+2c^{ }_{\circ}c A^T_{\bullet} -2c^{ }_{\circ}cA^{ }_{\bullet}   
+   \end{align*}
+%   \end{equation}
 
 
 
