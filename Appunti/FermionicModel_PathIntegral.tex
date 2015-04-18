@@ -48,8 +48,10 @@
 \newcommand{\ket}[1]{\left | #1 \right \rangle}
 \newcommand{\bra}[1]{\left \langle  #1 \right |}
 \newcommand{\ro}{\rho}
+\newcommand{\ra}{\rightarrow}
 
 \newcommand{\nl}{\vskip 0.3cm}
+\newcommand{\ns}{\vskip 0.8cm}
 \newcommand{\np}{\vskip 1.3cm}
 
 \newcommand{\obar}[1]{\overline{#1}}
@@ -80,53 +82,57 @@
  
  \section{The second-quantized model}
  Here we present the general model under study in a second quantized formalism.  Moreover, the full equation of motion of the two-point correlation matrix at equal times is derived.
- 
+  \np
   \subsection{Quantum Master Equation in Majorana form}
    We consider an open quantum system of Dirac fermions on a lattice, which we will consider finite for simplicity; the creation and annihilation operators for these fermions are $\left \{ a_i^{ },a_i^+, i\in \{1\dots N\} \right \} $\footnote{ The usual hat to distinguish between operators and numbers will always be omitted, as numbers (matrix elements) will be referred to using capital letters.} and they obey the usual anticommutation relations $\left\{a_i^{ },a_j^{ }\right\} = \left\{a_i^{+},a_j^+\right \}=0$ and $\left\{a_i^{ },a_j^+\right \} = \delta_{ij}\,id $.\\  We assume its dynamics to be described by a Markovian Quantum Master Equation (herein after referred as QME), which in the Lindblad form reads
-  \[\dot{\ro}=\mathcal{L}[\ro]=-i\left[H,\ro\right]+\sum_{\alpha}\left[L_{\alpha}^{ }\ro L_{\alpha}^+ - \frac{1}{2}L_{\alpha}^+L_{\alpha}^{ }\ro - \frac{1}{2}\ro L_{\alpha}^+L_{\alpha}^{ }\right]  \]
-  Furthermore, we will assume the Hamiltonian to be quadratic and the Lindblad operators to be linear in the fermionic fields  and , without any other constraint: 
-  \begin{subequations}        %sub-numbering of the equations which follow
+   \[\dot{\ro}=\mathcal{L}[\ro]=-i\left[H,\ro\right]+\sum_{\alpha}\left[L_{\alpha}^{ }\ro L_{\alpha}^+ - \frac{1}{2}L_{\alpha}^+L_{\alpha}^{ }\ro - \frac{1}{2}\ro L_{\alpha}^+L_{\alpha}^{ }\right]  \]
+   Furthermore, we will assume the Hamiltonian to be quadratic and the Lindblad operators to be linear in the fermionic fields  and , without any other constraint: 
+   \begin{subequations}        %sub-numbering of the equations which follow
 %   \renewcommand{\theequation}{\theparentequation.\arabic{equation}}         %sub-numbering is 1.1, 1.2 instead of standard 1a, 1b
-  \label{eq:quadr_dyn}         %ref the global set of equations as (1) with \ref{eq:global_label}
-  \begin{align}
-   H & = a_j^+M_{jk}a_k^{ } \equiv a^+Ma \label{eq:quadr_ham}\\         %ref the first eq as (1a) with \ref{eq:local_1st_label}
-   L_{\alpha} & = P^{ }_{\alpha j}a_j^{ } + Q^{ }_{\alpha j}a_j^+ \Rightarrow L \equiv P a + Q a^+ \label{eq:quadr_lindb}
-  \end{align}
-  \end{subequations}
- where a compact notation has been introduced in order to simplify the form of next calculations: 
- \begin{itemize}
-  \item indices are omitted and the order of symbols in the expressions also indicates the order of index contraction (e.g. $Mc\rightarrow M_{ij}a_j$ and $cM \rightarrow a_j M_{ji}$);
-  \item operators and matrices of numbers appear on the same footing in the formulae, according to the already mentioned rules of notations; there will be no need to distinguish between index-carrying and index-free operators/numbers as it will be always clear from the context.
- \end{itemize}
-  \np
- Following \cite{Eisert2010}, it is convenient to describe the system using Majorana fermionic operators
- \begin{align}
-  c_{j, 1} = a_j^{ }+a_j^{+} \quad \quad \quad
-  c_{j, 2} = i(a_j^{ }-a_j^{+})
-  \label{eq:def_majorana}
- \end{align}
-  whose algebra is 
- \begin{align}
-  \left\{c_{i,r},c_{j,s}\right\} = 2\delta_{ij}\delta_{rs}
-  \label{eq:algebra_majorana}
- \end{align}
-  as can be proven by direct computation. To what concerns us, they have these important properties:
-  \begin{itemize}
+   \label{eq:quadr_dyn}         %ref the global set of equations as (1) with \ref{eq:global_label}
+   \begin{align}
+    H & = a_j^+M_{jk}a_k^{ } \equiv a^+Ma \label{eq:quadr_ham}\\         %ref the first eq as (1a) with \ref{eq:local_1st_label}
+    L_{\alpha} & = P^{ }_{\alpha j}a_j^{ } + Q^{ }_{\alpha j}a_j^+ \Rightarrow L \equiv P a + Q a^+ \label{eq:quadr_lindb}
+   \end{align}
+   \end{subequations}
+   where a compact notation has been introduced in order to simplify the form of next calculations: 
+   \begin{itemize}
+   \item indices are omitted and the order of symbols in the expressions also indicates the order of index contraction (e.g. $Mc\rightarrow M_{ij}a_j$ and $cM \rightarrow a_j M_{ji}$);
+   \item operators and matrices of numbers appear on the same footing in the formulae, according to the already mentioned rules of notations; there will be no need to distinguish between index-carrying and index-free operators/numbers as it will be always clear from the context.
+   \end{itemize}
+   \ns
+   Following \cite{Eisert2010}, it is convenient to describe the system using Majorana fermionic operators
+   \begin{align}
+    c_{j, 1} = a_j^{ }+a_j^{+} \quad \quad \quad
+    c_{j, 2} = i(a_j^{ }-a_j^{+})
+    \label{eq:def_majorana}
+   \end{align}
+    whose algebra is 
+   \begin{equation*}
+    \left\{c_{i,r},c_{j,s}\right\} = 2\delta_{ij}\delta_{rs}
+%     \label{eq:algebra_majorana}
+   \end{equation*}
+    as can be proven by direct computation. To what concerns us, they have these important properties:
+   \begin{itemize}
    \item they are self-adjoint;
    \item they square to $id$, so they have no vacuum nor any Grassmann coherent state as an eigenstate;
-   \item their algebra can be straightforwardly mapped into a 2N-dimensional Clifford algebra by rescaling and relabelling of the operators; 
+   \item their algebra can be straightforwardly mapped into a 2N-dimensional Clifford algebra by rescaling and relabelling of the operators; here we will simply relabel them obtaining 
+   \begin{equation}
+    \left\{c_{i},c_{j}\right\} = 2\delta_{ij}
+    \label{eq:algebra_majorana}
+   \end{equation}
    \item this algebra and the previous properties are invariant with respect to orthogonal transformations $Q\in\mathcal{O}(2N):\ c_i\rightarrow Qc$;
-   \item since the linear relation between them and the Dirac fermionic operators is invertible, the algebras of observables generated by the two sets are identical: they provide the same physical description of the system. The 'switch' from Dirac to Majorana is thus a simple change of basis.
-  \end{itemize}
-  We'll perform this substitution into the Hamiltonian \ref{eq:quadr_ham}:
+   \item since the linear relation between them and the Dirac fermionic operators is invertible, the algebras of observables generated by the two sets are identical: they are related by a simple change of basis and thus provide the same physical description of the system.
+   \end{itemize}
+   Performing the substitution into the Hamiltonian \ref{eq:quadr_ham}:
     \begin{align*}
      H &= a^+Ma^{ } = a^+Da^{ } + a^+M'a^{ }\notag\\
        &=\frac{1}{4}\left[\cancel{c_1Dc_1} + \cancel{c_2Dc_2} +ic_2Dc_1-ic_1Dc_2+(c_1+ic_2)M'(c_1-ic_2)\right] =  \notag\\
        &=\frac{1}{4}\left[ic_2Dc_1-ic_1Dc_2+c_1M'c_1 + c_2M'c_2 +ic_2M'c_1-ic_1M'c_2\right]=\notag \\
        &=\frac{1}{4}\bigg[ic_2\left(D+\frac{M'+(M')^T}{2}\right)c_1-ic_1\left(D+\frac{M'+(M')^T}{2}\right)c_2 +\notag\\
        &\ \ \ +c_1\frac{M'-(M')^T}{2}c_1+c_2\frac{M'-(M')^T}{2}c_2\bigg]\notag
-   \end{align*}
-   where $M$ has been separated into its diagonal part $D$ and the rest $\displaystyle M'$, $c_rDc_r = \sum_iD_{ii}c_{i,r}^2 = \sum_i D_{ii}$ is a constant and can be omitted, $\displaystyle c_rM'c_s = - c_s(M')^Tc_r = \frac{1}{2}c_rM'c_s - \frac{1}{2}c_s(M')^Tc_r$ since $M'$ has zero diagonal and different fermions anticommute.\\ Finally, the general form for the Hamiltonian is, using that $M$ is an hermitian matrix:
+    \end{align*}
+    where $M$ has been separated into its diagonal part $D$ and the rest $\displaystyle M'$, $c_rDc_r = \sum_iD_{ii}c_{i,r}^2 = \sum_i D_{ii}$ is a constant and can be omitted, $\displaystyle c_rM'c_s = - c_s(M')^Tc_r = \frac{1}{2}c_rM'c_s - \frac{1}{2}c_s(M')^Tc_r$ since $M'$ has zero diagonal and different fermions anticommute.\\ Finally, the general form for the Hamiltonian is, using that $M$ is an hermitian matrix:
     \begin{subequations}
 %        \renewcommand{\theequation}{\theparentequation.\arabic{equation}}
 %     \begin{equation}
@@ -151,35 +157,73 @@
 %       \right .
 %      \end{equation}
     \end{align}
-\end{subequations}
-and thus $A$ is a generic real antisymmetric matrix.\\[0.3cm] Now we'll do the same for the Lindblad operators \ref{eq:quadr_lindb}:
-\begin{align*}
- L &= P a + Q a^+=\\
-   &= (P+Q)c_1 +i(-P+Q)c_2\\
- L^+&= P^*a^++Q^*a=\\
-   &= (P^*+Q^*)c_1+i(P^*-Q^*)c_2  
-\end{align*} 
-where $X^*$ is merely the complex (\ubar{not hermitian!}) conjugate of a complex matrix $X$. \\We recall that $P$ and $Q$ are rectangular matrices whose number of rows is the number of independent channels $L_{alpha}$ and whose number of coloumns is the number of lattice sites (and hence of the independent fermionic operators). From this, we get
-\begin{subequations}
+    \end{subequations}
+    and thus $A$ is a generic real antisymmetric matrix.\\[0.3cm] Now we'll do the same for the Lindblad operators \ref{eq:quadr_lindb}:
+    \begin{align*}
+   L &= P a + Q a^+=\\
+     &= (P+Q)c_1 +i(-P+Q)c_2\\
+   L^+&= P^*a^++Q^*a=\\
+     &= (P^*+Q^*)c_1+i(P^*-Q^*)c_2  
+    \end{align*}  
+   where $X^*$ is merely the complex (\ubar{not hermitian!}) conjugate of a complex matrix $X$. \\We recall that $P$ and $Q$ are rectangular matrices whose number of rows is the number of independent channels $L_{alpha}$ and whose number of coloumns is the number of lattice sites (and hence of the independent fermionic operators). From this, we get
+  \begin{subequations}
 % \begin{equation}
-\label{eq:quadr_lindb_majorana}
+  \label{eq:quadr_lindb_majorana}
 % \left\{ 
-\begin{align}
+  \begin{align}
 %  \begin{aligned}
-    &L    \equiv Rc, \quad \quad \quad \quad  L^+  = R^*c,\\
-    &R = \left(\begin{array}{cc} P+Q & -iP+iQ\end{array}\right) \\[0.3cm]
-    &L^+L = cR^+Rc \equiv cSc \\
-    &S =\left(\begin{array}{cc} (P+Q)^+(P+Q) & -i(P+Q)^+(P-Q)\\i(P-Q)^+(P+Q)&(P-Q)^+(P-Q) \end{array}\right)
+      &L    \equiv Rc, \quad \quad \quad \quad  L^+  = R^*c,\\
+      &R = \left(\begin{array}{cc} P+Q & -iP+iQ\end{array}\right) \\[0.3cm]
+      &L^+L = \sum_{\alpha} L^+_{\alpha}L^{ }_{\alpha} = c(R^*)^TRc = cR^+Rc \equiv cSc \\
+      &S =\left(\begin{array}{cc} (P+Q)^+(P+Q) & -i(P+Q)^+(P-Q)\\i(P-Q)^+(P+Q)&(P-Q)^+(P-Q) \end{array}\right)
 %  \end{aligned}
-\end{align} 
+  \end{align} 
 % \right.
 % \end{equation}
-\end{subequations}
-  
-
-  
+  \end{subequations}
+  \nl Hence, the Majorana QME in the compact form reads
+  \begin{equation}
+   \label{eq:quadr_dyn_majorana}
+   \dot{\ro}=\left[cAc,\ro\right]+cR^T\ro R^*c - \frac{1}{2}\left\{cSc,\ro\right\}
+  \end{equation}
+  \np
   
   \subsection{Equation of motion for the Covariance Matrix from QME}
+  The aim of this subsection is to derive a closed equation of motion for the two-point correlation function at equal time: \begin{equation*}
+  \mean{c_kc_l}(t)=\Tr\left[c_kc_l\ro(t)\right]=\frac{1}{2}\mean{2\delta_{ij}}(t)+\frac{1}{2}\mean{[c_k,c_l]}(t)=\cancel{1}+\frac{1}{2}\mean{[c_k,c_l]}(t)
+  \end{equation*}
+  Since the symmetric part of the product $c_kc_l$ is trivial at all times due to the trace-preserving property of the time evolution induced by a QME, it carries no physical information. Let us then define the real and antisymmetric Covariance Matrix, which is the meaningful physical object:
+  \begin{align}
+   &\Gamma_{kl}=\frac{i}{2}\mean{\left[c_k,c_l\right]}(t) &  \longleftrightarrow & & \Gamma = \frac{i}{2}\Tr\left[\left(c\otimes c - (c\otimes c)^T\right)\ro(t)\right]
+   \label{eq:def_covariance}
+  \end{align}
+  The $\Gamma$ matrix and the knowledge of its equation of motion are useful because:
+  \begin{itemize}
+   \item it allows an exact study of the relaxational dynamics towards the stationary state in the non-interacting case \cite{Eisert2010};
+   \item it allows to discuss the extenstion of the theory of critical phenomena to the context of non-pure Non Equilibrium Steady States (NESS), since the correlation length can be analitically evaluated and its (possibly critical) dependence on some parameter that appears in \ref{eq:quadr_dyn_majorana} can then be tested in this case;
+   \item it makes easier to identify pure NESSs, since its eigenvalues obey an inequality saturated only by pure states.\nl
+  \end{itemize}
+  In the spirit of the compact notation above, what we want to compute is
+  \begin{align*}
+   \dot{\Gamma} &=  \frac{i}{2}\Tr\left[\left(c\otimes c - (c\otimes c)^T\right)\mathcal{L}\left[\ro(t)\right]\right]=  \frac{i}{2}\Tr\left[\mathcal{L}^+\!\!\left[c\otimes c - (c\otimes c)^T\right]\ro(t)\right]
+  \end{align*}
+  A way to compute  $\mathcal{L}^+\!\!\left[c\otimes c\right]$ and $\mathcal{L}^+\!\!\left[ (c\otimes c)^T\right]$ that requires little effort consists in the following algorithm:
+  \begin{enumerate}
+   \item keep the matrix structure explicit, identifying only the first and last index, with $ \circ$ and $\bullet$ respectively; \ubar{these indices are never contracted}: if they appear in the middle of an expression, the index contraction of all the other operators/matrices starts before them and ends after them, if necessary;
+%    \item make the order of contractions explicit using arrows, from left to right;
+   \item start swapping fermionic operators in order to have $ \circ$ at the beginning and $\bullet$ at the end of the expression respectively; 
+   \item after each swap the original term gets a -1 factor and a new term is generated, where the two operators are replaced by their anticommutator; since this is in turn 2 times a delta of the indices, its effect will be to replace the contracted index with either $ \circ$ or $\bullet$.
+  \end{enumerate}\nl
+  The detailed calculations are:
+  \begin{align*}
+   &\mathcal{L}^+\!\!\left[c_{\circ}c_{\bullet}\right] = - \left[cAc, c_{\circ} c_{\bullet}\right] 
+  \end{align*}
+
+
+
+
+
+  
  \section{Path Integral reformulation of the QME}
   \subsection{Keldysh action for Majorana fermions}
   \subsection{Re-derivating the equation for the stationary Covariance Matrix}
