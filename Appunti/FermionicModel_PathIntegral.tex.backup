@@ -6,6 +6,7 @@
 
 \usepackage[all]{xy}
 \usepackage{graphicx}
+\usepackage{framed}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}   
@@ -42,6 +43,7 @@
 \DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Det}{Det}
 
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
@@ -97,7 +99,7 @@
  Here we present the general model under study in a second quantized formalism.  Moreover, the full equation of motion of the two-point correlation function at equal times is derived.
   \np
   \subsection{Quantum Master Equation in Majorana form}
-   We consider an open quantum system of Dirac fermions on a lattice, which we will consider finite for simplicity; the creation and annihilation operators for these fermions are $\left \{ a_i^{ },a_i^+, i\in \{1\dots N\} \right \} $\footnote{ The usual hat to distinguish between operators and numbers will always be omitted, as numbers (matrix elements) will be referred to using capital letters.} and they obey the usual anticommutation relations $\left\{a_i^{ },a_j^{ }\right\} = \left\{a_i^{+},a_j^+\right \}=0$ and $\left\{a_i^{ },a_j^+\right \} = \delta_{ij}\,id $.\\  We assume its dynamics to be described by a Markovian Quantum Master Equation (herein after referred as QME), which in the Lindblad form reads
+   We consider an open quantum system of Dirac fermions on a lattice, which we will consider finite for simplicity; the creation and annihilation operators for these fermions are $\left \{ a_i^{ },a_i^+, i\in \{1\dots N\} \right \} $\footnote{ The usual hat to distinguish between operators and numbers/fields will be omitted when the distinction is clear from the context; numbers (matrix elements) will be referred to using capital letters.} and they obey the usual anticommutation relations $\left\{a_i^{ },a_j^{ }\right\} = \left\{a_i^{+},a_j^+\right \}=0$ and $\left\{a_i^{ },a_j^+\right \} = \delta_{ij}\,id $.\\  We assume its dynamics to be described by a Markovian Quantum Master Equation (herein after referred as QME), which in the Lindblad form reads
    \[\dot{\ro}=\mathcal{L}[\ro]=-i\left[H,\ro\right]+\sum_{\alpha}\left[L_{\alpha}^{ }\ro L_{\alpha}^+ - \frac{1}{2}L_{\alpha}^+L_{\alpha}^{ }\ro - \frac{1}{2}\ro L_{\alpha}^+L_{\alpha}^{ }\right]  \]
    Furthermore, we assume the Hamiltonian to be quadratic and the Lindblad operators to be linear in the fermionic fields, without any other constraint: 
    \begin{subequations}        %sub-numbering of the equations which follow
@@ -272,7 +274,7 @@
     Z =& 4iA \notag
    \end{align}
    \end{subequations}
-   The result at step \ref{eq:covariance_eisert} can be directly compared with the analogous equation in \cite{Eisert2010}; there are two differences between the paper and us: 
+   The result at step \ref{eq:covariance_eisert} can be directly compared with the analogous equation in \cite{Eisert2010}, there are two differences: 
    \begin{itemize} 
    \item there's a (qualitatively irrelevant) factor of 2 instead of 4 multiplying A in the hamiltonian sector, it can be absorbed into a re-definition of the hamiltonian; 
    \item a crucial minus sign in front of the square bracket is missing; this cannot be re-absorbed since the matrix X is positive-definite for every choice of the Lindblad operators. Its physical meaning becomes clear when one writes the equation for the stationary covariance matrix $\Gamma_s$ and for $\delta\Gamma=\Gamma-\Gamma_s$:
@@ -287,7 +289,7 @@
 
    
  \section{Functional Integral reformulation of the QME}
- The rules of transcription from a QME to a functional integral for Dirac modes are known (from a preceding discussion?); the main question is to what extent similar rules can be derived for Majorana modes.\\ In the first part of this section, we derive them extending an easy and symmetric method developed in the Hamiltonian context (``fermion doubling'', \cite{DeBoer1996} and \cite{Nilsson2013}), leaving the details to Appendix \ref{sec:majorana_doubling_theory}. This allows to write a Majorana Keldysh action for the system. \\In the second part, the equation for the stationary Covariance Matrix is derived again using the Keldysh formalism.\np
+ The rules of transcription from a QME to a functional integral for Dirac modes are known (from a preceding discussion?); the main question is to what extent similar rules can be derived for Majorana modes.\\ In the first part of this section, we derive them extending an easy and symmetric method developed in the Hamiltonian context (``fermion doubling'', \cite{Nilsson2013}), leaving some details to Appendix \ref{sec:majorana_doubling_theory}. This allows to write a Majorana Keldysh action for the system. \\In the second part, the equation for the stationary Covariance Matrix is derived again using the Keldysh formalism.\np
   \subsection{From Majorana QME to Keldysh action}
   The main mathematical tool used to derive the Keldysh action for bosons or Dirac fermions directly from a QME is the coherent state decomposition of the identity, since it allows to ``trotterize'' the time evolution operator. This, together with time ordering and equal time regularization prescriptions, provides a fully self-consistent mapping from QME to Keldysh without the need to reformulate the problem in terms of a system+bath hamiltonian dynamics. However, this tool is not directly useful in our case, because Majorana operators don't have Grassmann coherent eigenstates, as aready pointed out.\\ The simplest strategy to circumvent the problem is to switch back to Dirac modes using \ref{eq:def_majorana} (that is, to derive the Keldysh action directly from \ref{eq:quadr_dyn}) and then to perform the Majorana rotation to the Grassmann fields. As pointed out in \cite{Nilsson2013} in the Hamiltonian scenario, this method treats $c_1$ and $c_2$ on a different footing, restoring the symmetry only at the end of the calculation. A symmetric way would be more satisfactory and turns out to lead to much easier calculations too.\\ To this end, let us double the dimension of the Hilbert space introducing fictious Majorana modes $d_j\,j\in\{1\dots2N\}$ and coupling both to form new Dirac modes
   \begin{equation}
@@ -297,18 +299,194 @@
    &d_j^{ } = i\left(b^{ }_j - b^{+}_j\right)
    \end{aligned}
   \end{equation}
-  the inverse being the same as in \ref{eq:def_majorana}. Since the fictious Majorana modes are decoupled from the dynamics, if the initial state has zero projection on the unphysical subspace its dynamical evolution will be the same as before. The correlation functions of the physical modes are then unchanged.\\ The programme is thus: perform the first substitution of \ref{eq:def_majorana_doubling} into the QME, use the known rules to write a Keldysh action and a generating functional for the Dirac modes, rotate back to Majorana modees and integrate out the $d$ field (since it doesn't enter in any physical correlator).\\  \remark{blabla}\\ \nl
-  Details (definition of the physical subspace, precise statement about dynamical evolution being ``the same as before'', equivalence between projecting onto the physical subspace and integrating out the $d$ fields) are carried out in the already mentioned Appendix \ref{sec:majorana_doubling_theory}.
-  
-  
-  
-
-
-  1) the main problem is that $c^2$ = 1 $\ra$ no grassmann coherent eigenstates, so we can't adapt the derivation QME->Keldysh which was valid for bosons and dirac fermions
-  2) in addition, one could be doubtful that such a field-theoretical description even existed, since $\mean{c(t)^2}=1$ due to Majorana properties + theorem by Gardiner, but $c(t)^2=0$ for Grassmann fields; the same problem appears actually for bosons and Dirac fermions in a subtler way: the fields corresponding to $a_i$ and $a_i^+$ commute/anticommute without producing 1 as an additional term. The solution is a correct time regularization
-  3) outline: $c = (\tilde{a} + \tilde{a}^+)/\sqrt{2}$ (così il cambio di base non cambia la normalizzazione dell'integrale funzionale), in questo modo allargo lo spazio di Hilbert e introduco nuovi d.o.f. inesistenti
+  the inverse being the same as in \ref{eq:def_majorana}. Since fictious Majorana modes are decoupled from dynamics, if the initial state has zero projection on the unphysical subspace its dynamical evolution will be the same as before. The correlation functions of the physical modes are then unchanged.\\ The programme is thus: perform the first substitution of \ref{eq:def_majorana_doubling} into the QME, use the known rules to write a Keldysh action and a generating functional for the Dirac modes, rotate back to Majorana modees and integrate out the $d$ field (since it doesn't enter in any physical correlator). This integration will be very simple because the fictious field appears only in the quadratic part containing time derivatives.\\[0.3cm] Details (definition of the physical subspace, precise statement about dynamical evolution being ``the same as before'', boundary conditions to be imposed on the d field) are carried out in the already mentioned Appendix \ref{sec:majorana_doubling_theory}. It's important for now only to remark that the customary convention for Keldysh rotation for fermions (see \cite{Kamenev2011} for the original reference) is not the best choice in our case: since Grassmann integrals are always convergent, different linear combinations of $\left\{\psi^{\pm}\right\}$ and $\left\{\psibar^{\pm}\right\}$ are chosen to form respectively $\left\{\psi_1,\psi_2\right\}$ and $\left\{\psibar_1,\psibar_2\right\}$; however, since $\psi$ and $\psibar$ are not treated on an equal footing anymore, this rotation in Keldysh space does not commute with Majorana rotation in Nambu space. In formulae:
+  \begin{align*}
+  &\begin{aligned}
+   \begin{pmatrix} 
+    \psi^+ \\ \psi^- \\ \psibar^+ \\ \psibar^-
+   \end{pmatrix}
+   & \ra 
+   \begin{pmatrix}
+   \psi_1\\ \psi_2 \\ \psibar_1 \\ \psibar_2 
+   \end{pmatrix}
+   = \frac{1}{\sqrt{2}}
+   \begin{pmatrix}
+   1 & 1 & 0 & 0\\ 1 & -1 & 0 & 0 \\ 0 & 0 & 1 & 1\\ 0 & 0 & -1 & 1 
+   \end{pmatrix}
+   \begin{pmatrix} 
+    \psi^+ \\ \psi^- \\ \psibar^+ \\ \psibar^-
+   \end{pmatrix}
+   \ra
+   \mathcolor{red}{\begin{pmatrix}
+   c_{1,1}\\ c_{2,1} \\ c_{1,2} \\ c_{2,2} 
+   \end{pmatrix}}
+   = \frac{1}{\sqrt{2}}
+   \begin{pmatrix}
+   1 & 0 & 1 & 0\\ 0 & 1 & 0 & 1 \\  i & 0 & -i & 0\\ 0 & i & 0 & -i 
+   \end{pmatrix}\\
+   &\begin{pmatrix}
+   1 & 1 & 0 & 0\\ 1 & -1 & 0 & 0 \\ 0 & 0 & 1 & 1\\ 0 & 0 & -1 & 1 
+   \end{pmatrix}
+   \begin{pmatrix} 
+    \psi^+ \\ \psi^- \\ \psibar^+ \\ \psibar^-
+   \end{pmatrix}
+    = \frac{1}{\sqrt{2}}
+   \mathcolor{red}{\begin{pmatrix}
+   1 & 1 & 1 & 1\\ 1 & -1 & -1 & 1 \\ i & i & -i & -i\\ i & -i & i & -i
+   \end{pmatrix}}
+   \begin{pmatrix} 
+   \psi^+ \\ \psi^- \\ \psibar^+ \\ \psibar^-
+   \end{pmatrix}
+   \end{aligned} \\
+  &\begin{aligned}
+    \begin{pmatrix} 
+    \psi^+ \\ \psi^- \\ \psibar^+ \\ \psibar^-
+    \end{pmatrix}
+    & \ra 
+    \begin{pmatrix} 
+    c_1^+ \\ c_1^- \\ c_2^+ \\ c_2^-
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+   1 & 0 & 1 & 0\\ 0 & 1 & 0 & 1 \\  i & 0 & -i & 0\\ 0 & i & 0 & -i 
+   \end{pmatrix}
+   \begin{pmatrix} 
+    \psi^+ \\ \psi^- \\ \psibar^+ \\ \psibar^-
+   \end{pmatrix}
+   \ra
+   \mathcolor{blue}{\begin{pmatrix}
+   c'_{1,1}\\ c'_{2,1} \\ c'_{1,2} \\ c'_{2,2} 
+   \end{pmatrix}}
+   = \frac{1}{\sqrt{2}}
+   \begin{pmatrix}
+   1 & 1 & 0 & 0\\ 1 & -1 & 0 & 0 \\ 0 & 0 & 1 & 1\\ 0 & 0 & -1 & 1 
+   \end{pmatrix}\\
+   & \begin{pmatrix}
+   1 & 0 & 1 & 0\\ 0 & 1 & 0 & 1 \\  i & 0 & -i & 0\\ 0 & i & 0 & -i 
+   \end{pmatrix}
+   \begin{pmatrix} 
+    \psi^+ \\ \psi^- \\ \psibar^+ \\ \psibar^-
+   \end{pmatrix}
+    = \frac{1}{\sqrt{2}}
+   \mathcolor{blue}{\begin{pmatrix}
+   1 & 1 & 1 & 1\\ 1 & -1 & 1 & -1 \\ i & i & -i & -i\\ -i & i & i & -i
+   \end{pmatrix}}
+   \begin{pmatrix} 
+   \psi^+ \\ \psi^- \\ \psibar^+ \\ \psibar^-
+   \end{pmatrix}
+   \end{aligned}
+  \end{align*}
+  To avoid this ambiguity, we shall adopt a different convention: just like the bosonic case, $\psi$ and $\psibar$ will be rotated with the same matrix, so that the block matrix above has two equal diagonal blocks. This will ensure Keldysh Majorana fields to be unambiguously defined:
+  \begin{align*}
+   \begin{pmatrix}
+   1 & 0 & 1 & 0\\ 0 & 1 & 0 & 1 \\  i & 0 & -i & 0\\ 0 & i & 0 & -i 
+   \end{pmatrix}&
+   \begin{pmatrix}
+   1 & 1 & 0 & 0\\ 1 & -1 & 0 & 0 \\ 0 & 0 & 1 & 1\\ 0 & 0 & 1 & -1 
+   \end{pmatrix}
+   =
+   \begin{pmatrix}
+   1 & 1 & 0 & 0\\ 1 & -1 & 0 & 0 \\ 0 & 0 & 1 & 1\\ 0 & 0 & 1 & -1 
+   \end{pmatrix}
+   \begin{pmatrix}
+   1 & 0 & 1 & 0\\ 0 & 1 & 0 & 1 \\  i & 0 & -i & 0\\ 0 & i & 0 & -i 
+   \end{pmatrix}=\\
+  &= \begin{pmatrix}
+   1 & 1 & 1 & 1\\ 1 & -1 & 1 & -1 \\ i & i & -i & -i\\ i & -i & -i & i
+   \end{pmatrix}
+  \end{align*}
+  The detailed calculations follow:
+  \begin{align*}
+   &H=icAc=i(b+b^+)A(b+b^+),\quad \quad \quad \quad L=Rc=R(b+b^+) \\
+   &Z[\eta_+,\obar{\eta}_+,\eta_-,\obar{\eta}_-] = \int D[b_+,\obar{b}_+]D[b_-,\obar{b}_-]\,\,e^{iS+\int\obar{b}_+\eta_+-\obar{b}_-\eta_-+\obar{\eta}_+ b_++\obar{\eta}_- b_- }\\
+   &S=\int_t\obar{b}_+i\partial_tb_+-\obar{b}_-i\partial_tb_--i(b_++\obar{b}_+)A(b_++\obar{b}_+)+i(b_-+\obar{b}_-)A(b_-+\obar{b}_-)\\
+   &\quad -i\left((b_-+\obar{b}_-)S(b_++\obar{b}_+)-\frac{1}{2}(b_++\obar{b}_+)S(b_++\obar{b}_+)-\frac{1}{2}(b_-+\obar{b}_-)S(b_-+\obar{b}_-) \right)\\
+   \end{align*}
+   As expected, the hamiltonian and Lindbladian part do not depend on the fictious field $d$. Performing the Majorana rotation,
+   \begin{align*}
+   &\begin{pmatrix}
+   b_+ \\ \obar{b}_+ \\ b_- \\ \obar{b}_-            
+   \end{pmatrix}
+   \ra
+   \begin{pmatrix}
+   c_+ \\ d_+ \\ c_- \\ d_-
+   \end{pmatrix}
+   = 
+   \begin{pmatrix}
+   1 & 1 & 0 & 0\\ i & -i & 0 & 0 \\ 0 & 0 & 1 & 1\\ 0 & 0 & i & -i 
+   \end{pmatrix}
+   \begin{pmatrix}
+   b_+ \\ \obar{b}_+ \\ b_- \\ \obar{b}_-            
+   \end{pmatrix}\\
+   &Z\ra \prod_{j=1}^{4\cdot2N}\left(\frac{i}{2}\right)^{-1} \cdot \int D[c_+,d_+]D[c_-,d_-]\,\,e^{iS'+\int \lambda_+c_+-\lambda_-c_-+\chi_+d_+-\chi_-d_- }\quad\text{\footnotemark }\\
+   &S'=\int_t \frac{1}{4}\big[c_+i\partial_tc_+-c_-i\partial_tc_- + d_+i\partial_td_+-d_-i\partial_td_-+\mathcolor{blue}{c_+\partial_td_+-d_+\partial_t c_+ - c_-\partial_td_--d_-\partial_t c_-}\big]\\&\quad +\tilde{S}[c_+,c_-]=\\
+   &\quad =\int_t \frac{1}{4}\big[c_+i\partial_tc_+-c_-i\partial_tc_- + d_+i\partial_td_+-d_-i\partial_td_-+\mathcolor{blue}{\partial_t(c_+d_+-c_-d_-)}\big]+\tilde{S}[c_+,c_-]
+   \end{align*} \footnotetext{The correct normalization comes from Berezin's formula, look for references! 2N = number of physical Majorana modes = number of fictious modes, \ubar{for each branch of the contour}.}
+   
+   The total derivative contributes with boundary terms wihich sum up to 0: $c_+=c_-$ and $d_+=d_-$ at the final time by construction of the functional integral; since the initial state has no projection onto the subspace where $d$ has support, the initial value of this field is 0 (see \ref{sec:majorana_doubling_theory} for details).\\
+   The integration upon $d$ is then trivial: it is a fermionic Gaussian one, starting on the + contour and continuing on the reversed -contour, with $d(t_i)=d(t_f)=d_{\pm}(t_i)=0$ ; ignoring the sources (they can be absorbed by a shift of the integration variables), it reads 
+   \begin{align*}
+   &\int D[d]\,\exp\left[\int_t \frac{1}{2}dMd\right] = \Det\left[\frac{M-M^T}{2}\right]^{1/2}, & &M=-\frac{1}{2}\partial_t
+   \end{align*}
+   and, in a discrete representation,
+   \begin{align*}
+    &M = \frac{1}{2}\begin{pmatrix}
+                     1 & 0 & \hdots & \mathcolor{red}{0} \\ -1 & 1 & 0 &\hdots \\ 0 & -1 & 1 & \ddots \\ \vdots & \ddots  & \ddots & \ddots 
+                    \end{pmatrix}, 
+    & & \frac{M-M^T}{2} = \frac{1}{4}\begin{pmatrix}
+                     0 & 1 & \hdots & \mathcolor{red}{0} \\ -1 & 0 & 1 &\hdots \\ 0 & -1 & 0 & \ddots \\ \vdots & \ddots  & \ddots & \ddots 
+                    \end{pmatrix}\\
+    & \Det\left[\frac{M-M^T}{2}\right]^{1/2} = \left[4^{-2\cdot2N}\right]^{1/2} = 2^{-2\cdot2N}
+   \end{align*}
+   The net effect of the $d$ field is thus only cancelling half of the normalization factor (as it should be, since if $\tilde{S}=0$,  $c$ and $d$ equally contribute to $Z=1$). \\[0.3cm] This result can be summed up in the following rule:  \begin{framed}The Keldysh action for Majorana fermions can be written using the same rules of Dirac fermions, with an additional factor of 1/2 (or 1/4 + normalization prefactor to the functional integral) multiplying the time derivative term, depending on the normalization chosen for Majorana modes.\end{framed} Therefore, the action is 
+   \begin{align}
+    S =& \int_t \left[\frac{1}{4}c_+i\partial_tc_+-\frac{1}{4}c_-i\partial_tc_- -ic_+Ac_+ + ic_-Ac_- -i \left(c_-Sc_+ -\frac{1}{2}c_+Sc_+ -\frac{1}{2}c_-Sc_-\right)\right]= \notag\\ =& \int_t \left[ \frac{1}{4} c_1\left(i\partial_t -4iA\right)c_2 + \frac{1}{4} c_2\left(i\partial_t -4iA\right)c_1 -\frac{i}{2}(c_1Sc_2-c_2Sc_1-2c_2Sc_2) \right]= \notag \\
+    =&\ \frac{1}{4} \int_t 
+               \begin{pmatrix}
+                c_1 & c_2
+               \end{pmatrix}
+               \begin{pmatrix}
+                0 & i\partial_t - Z - iX \\ i\partial_t - Z + iX & Y
+               \end{pmatrix}
+               \begin{pmatrix}
+                c_1 \\ c_2
+               \end{pmatrix}\\[0.3cm]
+    X =&\  S+S^T = 2\Re[S], \quad\quad\quad\quad (S\geq 0\Rightarrow X\geq 0) \notag\\
+    Y =&\ 2i\big(S-S^T\big) = -4\Im[S] \notag \\
+    Z =&\ 4iA \notag 
+   \end{align}
+   where the inverse green function matrix has been antisymmetrized without loss of generality (except the time derivative part) and the definitions after \ref{eq:covariance_qme} appear naturally again.
   \np
-  \subsection{Re-derivating the equation for the stationary Covariance Matrix}
+  \subsection{Equation of motion for the Covariance Matrix using Kelidysh}
+  I have written \ubar{serious} notes on paper and I'm writing them with tex. We can already discuss this part, but I still have only my piece of paper.
+%   In order to relate the equal time 2-point correlation function to Green functions in the functional integral framework, some care has to be taken: ``equal time'' is ill-defined in the continuum limit and a time ordering prescription is necessary, either discretizing time or insterting it directly into the continuum form. \\ The former will always produce correct results, so it provides us an insight for the correct choice for the latter too:
+%   \begin{align}
+%   &\begin{aligned}
+%    \Tr&\left[ \underset{\mathclap{\longleftarrow}}{\hat{c_i}(t)\hat{c_j}(t)}\rho\right] = \mean{\mathcal{T}\hat{c_i}(t+0^+)\hat{c_j}(t)} = \mean{c_{+i}(t+0^+)c_{+j}(t)} = \lim_{\delta\to 0^+}\mean{c_{+i}(t+\delta)c_{+j}(t)}\\
+%    &\quad\quad\parallel \\
+%    \Tr&\left[\rho \underset{\mathclap{\longrightarrow}}{\hat{c_i}(t)\hat{c_j}(t)}\right] = \mean{\tilde{\mathcal{T}}\hat{c_i}(t)\hat{c_j}(t+0^+)} = \mean{c_{-i}(t)c_{-j}(t+0^+)} = \lim_{\delta\to 0^+}\mean{c_{-i}(t)c_{-j}(t+\delta)}\\
+%    &\quad\quad\parallel\\
+%    \Tr&\left[\hat{c_j}(t)\rho\hat{c_i(t)}\right] = \mean{\mathcal{T_C}\,\hat{c_i}(t^-)\hat{c_j}(t^+)} = \mean{c_{-i}(t)c_{+j}(t)} =  \lim_{\delta,\delta'\to 0} \mean{c_{-i}(t+\delta)c_{+j}(t+\delta')}
+%   \end{aligned}\notag\\[0.3 cm]
+%   &\mean{c_{1i}(t+\delta)c_{1j}(t)} = \frac{1}{2}(\mathcolor{red}{\mean{c_{+i}(t+\delta)c_{+j}(t)}}+\mathcolor{blue}{\mean{c_{+i}(t+\delta)c_{-j}(t)}}+\mathcolor{red}{\mean{c_{-i}(t+\delta)c_{+j}(t)}} \notag\\
+%   &\quad\quad\quad+\mathcolor{blue}{\mean{c_{-i}(t+\delta)c_{-j}(t)}})\underset{\mathclap{\delta\to0^+}}{\longrightarrow}\frac{1}{2}(\mathcolor{red}{2\mean{\hat{c_i}\hat{c_j}}(t)}-\mathcolor{blue}{2\mean{\hat{c_j}\hat{c_i}}(t)})\notag\\[0.3cm]
+%   \Gamma_{ij}&=\frac{i}{2}\lim_{\delta\to0^+}\mean{c_{1i}(t+\delta)c_{1j}(t)}=\frac{i}{2}\lim_{\delta\to0^+}iG_{11,ij}(t+\delta,t)=-\frac{1}{2}\lim_{\delta\to0^+}G_{11,ij}(t+\delta,t)
+%   \end{align}
+%   On the stationary state, one can switch to Fourier representation and obtains
+%   \begin{align*}
+%    G(\omega)&=2\begin{pmatrix}
+%               -\frac{1}{\omega -Z+iX}Y\frac{1}{\omega -Z-iX} & \frac{1}{\omega -Z-iX}  \\
+%                \frac{1}{\omega -Z+iX} & 0
+%              \end{pmatrix}\quad\text{\footnotemark }\\
+%   \Gamma_s&=\frac{i}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi}\,G_{11}(\omega)e^{-i\omega\delta}\\
+%   (iZ+X)&\Gamma_s-\Gamma_s(iZ-X) = -\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} [(iZ+X)G_{11}(\omega)-G_{11}(\omega)(iZ-X)]e^{-i\omega\delta}=\\
+%   &=-\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} [(-i\omega+iZ+X)G_{11}(\omega)-G_{11}(\omega)(-i\omega+iZ-X)]e^{-i\omega\delta}=\\
+%   &=-\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} \left[\cancel{+2iY\frac{1}{\omega -Z-iX}} - 2i\frac{1}{\omega-Z+iX}Y\right]e^{-i\omega\delta}=\\
+%   &=\frac{1}{2\pi}
+%   \end{align*}
+%   where in the last equalities we closed the integration contour in the lower half complex $\omega$ plane (due to the $\delta\geq0$ constraint), we kept only the term with poles in the lower half plane, its contribute is the sum of its residues times $2\pi i$, the residue at infinity vanishes due to Jordan's lemma while the sum of the others is the sum of the projectors on all the eigenspaces of the matrix $Z+iX$, which we assume to be the identity. (eeeeh????)
+%   \footnotetext{The factor 2 in $G(\omega)$ comes from the normalization: a factor $1/2$ in front of the action is the ``standard'' normalization and every excess contributes to Green functions. }
+
   \np
   
   
@@ -316,9 +494,19 @@
  \appendix
  \section{Majorana doubling trick}
  \label{sec:majorana_doubling_theory}
-    
+ Plan of the Appendix (not going to write it explicitly until the very end, unless you want to see it before):
+ \begin{itemize}
+  \item uniqueness of real representations of Grassmann algebra (cite \ref{Okubo1991real}) $\ra$ whatever the original basis may be, there exists a change of basis that reduces Majorana operators matrices as X111, ZX11, ZZX1, ...
+  \item given this basis, complexification and mapping into Dirac algebra is trivial since these are the matrix elements in the Dirac basis;c the physical subspace contains only vectors whose coefficients wrt this basis are purely real; call P the projector onto this subspace; 
+  \item cP=Pc, while PdP=0; due to this, $\mathcal{L}[P\cdot]=P\mathcal{L}[\cdot]$, $\mathcal{L}[\cdot P]=\mathcal{L}[\cdot]P$;
+  \item consider a density matrix with initial support on the physical subspace, $P\rho P = \rho$; due to the property of the Liouvillian dynamics above, this property is preserved at all times $\ra$ the density matrix evolves only within the physical subspace with the same Liouvillian as before $\ra$ it is the same as before, same matrix elements within the p.s. and 0 every other
+  \item correlation functions of the physical operators are unchanged: P and $c(t)$ commute at all times; the Heisenberg operator $PcP(t)$ is the same (the same matrix elements on the p.s. and 0 every other) as $c(t)$ before; $\mean{c(t)c(t')\dots}$ before = $\mean{c(t) c(t')\dots}$ now (\textit{proof:} $\mean{c(t)c(t')\dots}$ before = $\mean{Pc(t)P\, Pc(t')P\dots}$ is true because they have the same matrix elements; $P\rho P = \rho$, so in the correlator on the extended space the initial state can ``produce'' as many P as required; P and $c(t)$ commute at all times, so one can reproduce the correlator with all the P insertions);
+  \item usual functional-integral-from-QME derivation now perfectly works: we have a complex hilbert space, Dirac fermions and Grassmann variables. Boundary conditions are the last problem:
+ \end{itemize}
+ \np
+
    
    
 \bibliography{../library}{}
-\bibliographystyle{amsalpha}  
+\bibliographystyle{alpha}  
 \end{document}
