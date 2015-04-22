@@ -464,34 +464,33 @@
    where the inverse Green functions matrix has been antisymmetrized without loss of generality (except the time derivative part) and the definitions after \ref{eq:covariance_qme} appear again in a natural way.
   \np
   \subsection{Equation of motion for the Covariance Matrix using Kelidysh}
-  I have written \ubar{serious} notes on paper and I'm writing them with tex. We can already discuss this part, but I still have only my piece of paper.
-%   In order to relate the equal time 2-point correlation function to Green functions in the functional integral framework, some care has to be taken: ``equal time'' is ill-defined in the continuum limit and a time ordering prescription is necessary, either discretizing time or insterting it directly into the continuum form. \\ The former will always produce correct results, so it provides us an insight for the correct choice for the latter too:
-%   \begin{align}
-%   &\begin{aligned}
-%    \Tr&\left[ \underset{\mathclap{\longleftarrow}}{\hat{c_i}(t)\hat{c_j}(t)}\rho\right] = \mean{\mathcal{T}\hat{c_i}(t+0^+)\hat{c_j}(t)} = \mean{c_{+i}(t+0^+)c_{+j}(t)} = \lim_{\delta\to 0^+}\mean{c_{+i}(t+\delta)c_{+j}(t)}\\
-%    &\quad\quad\parallel \\
-%    \Tr&\left[\rho \underset{\mathclap{\longrightarrow}}{\hat{c_i}(t)\hat{c_j}(t)}\right] = \mean{\tilde{\mathcal{T}}\hat{c_i}(t)\hat{c_j}(t+0^+)} = \mean{c_{-i}(t)c_{-j}(t+0^+)} = \lim_{\delta\to 0^+}\mean{c_{-i}(t)c_{-j}(t+\delta)}\\
-%    &\quad\quad\parallel\\
-%    \Tr&\left[\hat{c_j}(t)\rho\hat{c_i(t)}\right] = \mean{\mathcal{T_C}\,\hat{c_i}(t^-)\hat{c_j}(t^+)} = \mean{c_{-i}(t)c_{+j}(t)} =  \lim_{\delta,\delta'\to 0} \mean{c_{-i}(t+\delta)c_{+j}(t+\delta')}
-%   \end{aligned}\notag\\[0.3 cm]
-%   &\mean{c_{1i}(t+\delta)c_{1j}(t)} = \frac{1}{2}(\mathcolor{red}{\mean{c_{+i}(t+\delta)c_{+j}(t)}}+\mathcolor{blue}{\mean{c_{+i}(t+\delta)c_{-j}(t)}}+\mathcolor{red}{\mean{c_{-i}(t+\delta)c_{+j}(t)}} \notag\\
-%   &\quad\quad\quad+\mathcolor{blue}{\mean{c_{-i}(t+\delta)c_{-j}(t)}})\underset{\mathclap{\delta\to0^+}}{\longrightarrow}\frac{1}{2}(\mathcolor{red}{2\mean{\hat{c_i}\hat{c_j}}(t)}-\mathcolor{blue}{2\mean{\hat{c_j}\hat{c_i}}(t)})\notag\\[0.3cm]
-%   \Gamma_{ij}&=\frac{i}{2}\lim_{\delta\to0^+}\mean{c_{1i}(t+\delta)c_{1j}(t)}=\frac{i}{2}\lim_{\delta\to0^+}iG_{11,ij}(t+\delta,t)=-\frac{1}{2}\lim_{\delta\to0^+}G_{11,ij}(t+\delta,t)
-%   \end{align}
-%   On the stationary state, one can switch to Fourier representation and obtains
-%   \begin{align*}
-%    G(\omega)&=2\begin{pmatrix}
-%               -\frac{1}{\omega -Z+iX}Y\frac{1}{\omega -Z-iX} & \frac{1}{\omega -Z-iX}  \\
-%                \frac{1}{\omega -Z+iX} & 0
-%              \end{pmatrix}\quad\text{\footnotemark }\\
-%   \Gamma_s&=\frac{i}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi}\,G_{11}(\omega)e^{-i\omega\delta}\\
-%   (iZ+X)&\Gamma_s-\Gamma_s(iZ-X) = -\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} [(iZ+X)G_{11}(\omega)-G_{11}(\omega)(iZ-X)]e^{-i\omega\delta}=\\
-%   &=-\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} [(-i\omega+iZ+X)G_{11}(\omega)-G_{11}(\omega)(-i\omega+iZ-X)]e^{-i\omega\delta}=\\
-%   &=-\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} \left[\cancel{+2iY\frac{1}{\omega -Z-iX}} - 2i\frac{1}{\omega-Z+iX}Y\right]e^{-i\omega\delta}=\\
-%   &=\frac{1}{2\pi}
-%   \end{align*}
-%   where in the last equalities we closed the integration contour in the lower half complex $\omega$ plane (due to the $\delta\geq0$ constraint), we kept only the term with poles in the lower half plane, its contribute is the sum of its residues times $2\pi i$, the residue at infinity vanishes due to Jordan's lemma while the sum of the others is the sum of the projectors on all the eigenspaces of the matrix $Z+iX$, which we assume to be the identity. (eeeeh????)
-%   \footnotetext{The factor 2 in $G(\omega)$ comes from the normalization: a factor $1/2$ in front of the action is the ``standard'' normalization and every excess contributes to Green functions. }
+  In order to relate the equal time 2-point correlation function to Green functions in the functional integral framework, some care has to be taken: ``equal time'' is ill-defined in the continuum limit and a time ordering prescription is necessary, either discretizing time or insterting it directly into the continuum form. \\ The former will always produce correct results, so it provides us an insight for the correct choice for the latter too:
+  \begin{align}
+  &\begin{aligned}
+   \Tr&\left[ \underset{\mathclap{\longleftarrow}}{\hat{c_i}(t)\hat{c_j}(t)}\rho\right] = \mean{\mathcal{T}\hat{c_i}(t+0^+)\hat{c_j}(t)} = \mean{c_{+i}(t+0^+)c_{+j}(t)} = \lim_{\delta\to 0^+}\mean{c_{+i}(t+\delta)c_{+j}(t)}\\
+   &\quad\quad\parallel \\
+   \Tr&\left[\rho \underset{\mathclap{\longrightarrow}}{\hat{c_i}(t)\hat{c_j}(t)}\right] = \mean{\tilde{\mathcal{T}}\hat{c_i}(t)\hat{c_j}(t+0^+)} = \mean{c_{-i}(t)c_{-j}(t+0^+)} = \lim_{\delta\to 0^+}\mean{c_{-i}(t)c_{-j}(t+\delta)}\\
+   &\quad\quad\parallel\\
+   \Tr&\left[\hat{c_j}(t)\rho\hat{c_i(t)}\right] = \mean{\mathcal{T_C}\,\hat{c_i}(t^-)\hat{c_j}(t^+)} = \mean{c_{-i}(t)c_{+j}(t)} =  \lim_{\delta,\delta'\to 0} \mean{c_{-i}(t+\delta)c_{+j}(t+\delta')}
+  \end{aligned}\notag\\[0.3 cm]
+  &\mean{c_{1i}(t+\delta)c_{1j}(t)} = \frac{1}{2}(\mathcolor{red}{\mean{c_{+i}(t+\delta)c_{+j}(t)}}+\mathcolor{blue}{\mean{c_{+i}(t+\delta)c_{-j}(t)}}+\mathcolor{red}{\mean{c_{-i}(t+\delta)c_{+j}(t)}} \notag\\
+  &\quad\quad\quad+\mathcolor{blue}{\mean{c_{-i}(t+\delta)c_{-j}(t)}})\underset{\mathclap{\delta\to0^+}}{\longrightarrow}\frac{1}{2}(\mathcolor{red}{2\mean{\hat{c_i}\hat{c_j}}(t)}-\mathcolor{blue}{2\mean{\hat{c_j}\hat{c_i}}(t)})\notag\\[0.3cm]
+  \Gamma_{ij}&=\frac{i}{2}\lim_{\delta\to0^+}\mean{c_{1i}(t+\delta)c_{1j}(t)}=\frac{i}{2}\lim_{\delta\to0^+}iG_{11,ij}(t+\delta,t)=-\frac{1}{2}\lim_{\delta\to0^+}G_{11,ij}(t+\delta,t)
+  \end{align}
+  On the stationary state, one can switch to Fourier representation and obtains
+  \begin{align*}
+   G(\omega)&=2\begin{pmatrix}
+              -\frac{1}{\omega -Z+iX}Y\frac{1}{\omega -Z-iX} & \frac{1}{\omega -Z-iX}  \\
+               \frac{1}{\omega -Z+iX} & 0
+             \end{pmatrix}\quad\text{\footnotemark }\\
+  \Gamma_s&=\frac{i}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi}\,G_{11}(\omega)e^{-i\omega\delta}\\
+  (iZ+X)&\Gamma_s-\Gamma_s(iZ-X) = -\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} [(iZ+X)G_{11}(\omega)-G_{11}(\omega)(iZ-X)]e^{-i\omega\delta}=\\
+  &=-\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} [(-i\omega+iZ+X)G_{11}(\omega)-G_{11}(\omega)(-i\omega+iZ-X)]e^{-i\omega\delta}=\\
+  &=-\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} \left[\cancel{+2iY\frac{1}{\omega -Z-iX}} - 2i\frac{1}{\omega-Z+iX}Y\right]e^{-i\omega\delta}=\\
+  &=\frac{1}{2\pi}
+  \end{align*}
+  where in the last equalities we closed the integration contour in the lower half complex $\omega$ plane (due to the $\delta\geq0$ constraint), we kept only the term with poles in the lower half plane, its contribute is the sum of its residues times $2\pi i$, the residue at infinity vanishes due to Jordan's lemma while the sum of the others is the sum of the projectors on all the eigenspaces of the matrix $Z+iX$, which we assume to be the identity. (eeeeh????)
+  \footnotetext{The factor 2 in $G(\omega)$ comes from the normalization: a factor $1/2$ in front of the action is the ``standard'' normalization and every excess contributes to Green functions. }
 
   \np
   
