@@ -84,7 +84,7 @@
 
 
 % ---- info ---------
-\title{Notes: Fermionic model of interest}
+\title{Notes: Free Fermions with quadratic dissipation}
 \author{Federico Tonielli}
 
 % ---- document -----
@@ -219,7 +219,7 @@
   \end{equation}
   \np
   
-  \subsection{Equation of motion for the Covariance Matrix from QME}
+  \subsection{Equation of motion for the Covariance Matrix using the QME}
   The aim of this subsection is to derive a closed equation of motion for the two-point correlation function at equal time: \begin{equation*}
   \mean{c_kc_l}(t)=\Tr\left[c_kc_l\ro(t)\right]=\frac{1}{2}\mean{2\delta_{ij}}(t)+\frac{1}{2}\mean{[c_k,c_l]}(t)=\cancel{1}+\frac{1}{2}\mean{[c_k,c_l]}(t)
   \end{equation*}
@@ -465,37 +465,46 @@
   \np
   \subsection{Equation of motion for the Covariance Matrix using Kelidysh}
   In order to relate the equal time 2-point correlation function to Green functions in the functional integral framework, some care has to be taken: ``equal time'' is ill-defined in the continuum limit and a time ordering prescription is necessary, either discretizing time or insterting it directly into the continuum form. \\ The former will always produce correct results, so it provides us an insight for the correct choice for the latter too:
-  \begin{align}
-  &\begin{aligned}
-   \Tr&\left[ \underset{\mathclap{\longleftarrow}}{\hat{c_i}(t)\hat{c_j}(t)}\rho\right] = \mean{\mathcal{T}\hat{c_i}(t+0^+)\hat{c_j}(t)} = \mean{c_{+i}(t+0^+)c_{+j}(t)} = \lim_{\delta\to 0^+}\mean{c_{+i}(t+\delta)c_{+j}(t)}\\
-   &\quad\quad\parallel \\
-   \Tr&\left[\rho \underset{\mathclap{\longrightarrow}}{\hat{c_i}(t)\hat{c_j}(t)}\right] = \mean{\tilde{\mathcal{T}}\hat{c_i}(t)\hat{c_j}(t+0^+)} = \mean{c_{-i}(t)c_{-j}(t+0^+)} = \lim_{\delta\to 0^+}\mean{c_{-i}(t)c_{-j}(t+\delta)}\\
-   &\quad\quad\parallel\\
-   \Tr&\left[\hat{c_j}(t)\rho\hat{c_i(t)}\right] = \mean{\mathcal{T_C}\,\hat{c_i}(t^-)\hat{c_j}(t^+)} = \mean{c_{-i}(t)c_{+j}(t)} =  \lim_{\delta,\delta'\to 0} \mean{c_{-i}(t+\delta)c_{+j}(t+\delta')}
-  \end{aligned}\notag\\[0.3 cm]
-  &\mean{c_{1i}(t+\delta)c_{1j}(t)} = \frac{1}{2}(\mathcolor{red}{\mean{c_{+i}(t+\delta)c_{+j}(t)}}+\mathcolor{blue}{\mean{c_{+i}(t+\delta)c_{-j}(t)}}+\mathcolor{red}{\mean{c_{-i}(t+\delta)c_{+j}(t)}} \notag\\
-  &\quad\quad\quad+\mathcolor{blue}{\mean{c_{-i}(t+\delta)c_{-j}(t)}})\underset{\mathclap{\delta\to0^+}}{\longrightarrow}\frac{1}{2}(\mathcolor{red}{2\mean{\hat{c_i}\hat{c_j}}(t)}-\mathcolor{blue}{2\mean{\hat{c_j}\hat{c_i}}(t)})\notag\\[0.3cm]
-  \Gamma_{ij}&=\frac{i}{2}\lim_{\delta\to0^+}\mean{c_{1i}(t+\delta)c_{1j}(t)}=\frac{i}{2}\lim_{\delta\to0^+}iG_{11,ij}(t+\delta,t)=-\frac{1}{2}\lim_{\delta\to0^+}G_{11,ij}(t+\delta,t)
-  \end{align}
-  On the stationary state, one can switch to Fourier representation and obtains
   \begin{align*}
-   G(\omega)&=2\begin{pmatrix}
-              -\frac{1}{\omega -Z+iX}Y\frac{1}{\omega -Z-iX} & \frac{1}{\omega -Z-iX}  \\
-               \frac{1}{\omega -Z+iX} & 0
-             \end{pmatrix}\quad\text{\footnotemark }\\
-  \Gamma_s&=\frac{i}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi}\,G_{11}(\omega)e^{-i\omega\delta}\\
-  (iZ+X)&\Gamma_s-\Gamma_s(iZ-X) = -\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} [(iZ+X)G_{11}(\omega)-G_{11}(\omega)(iZ-X)]e^{-i\omega\delta}=\\
-  &=-\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} [(-i\omega+iZ+X)G_{11}(\omega)-G_{11}(\omega)(-i\omega+iZ-X)]e^{-i\omega\delta}=\\
-  &=-\frac{1}{2}\lim_{\delta\to0^+}\int\frac{d\omega}{2\pi} \left[\cancel{+2iY\frac{1}{\omega -Z-iX}} - 2i\frac{1}{\omega-Z+iX}Y\right]e^{-i\omega\delta}=\\
-  &=\frac{1}{2\pi}
+  \mathcolor{red}{\mean{\hat{c_i}\hat{c_j}}(t)}&=\Tr\left[ \underset{\mathclap{\longleftarrow}}{\hat{c_i}\hat{c_j}}\hat{\rho}(t)\right] = \lim_{\delta\to 0^+}\mathcolor{red}{\mean{c_{+i}(t+\delta)c_{+j}(t)}}=\notag\\ 
+  &=\Tr\left[ \underset{\mathclap{\leftarrow}}{\hat{c_j}}\hat{\rho}(t)\underset{\mathclap{\rightarrow}}{\hat{c_i}}\right] = \lim_{\delta,\delta'\to 0} \mean{c_{-i}(t+\delta)c_{+j}(t+\delta')} = \lim_{\delta\to 0} \mathcolor{red}{\mean{c_{-i}(t+\delta)c_{+j}(t)}}  \notag\\
+  \mathcolor{blue}{\mean{\hat{c_j}\hat{c_i}}(t)}&=\Tr\left[\hat{\rho}(t) \underset{\mathclap{\longrightarrow}}{\hat{c_j}\hat{c_i}}\right] = \lim_{\delta\to 0^+}\mean{c_{-j}(t)c_{-i}(t+\delta)}=-\lim_{\delta\to 0^+}\mathcolor{blue}{\mean{c_{-i}(t+\delta)c_{-j}(t)}}=\notag\\
+   &=\Tr\left[ \underset{\mathclap{\leftarrow}}{\hat{c_i}}\hat{\rho}(t)\underset{\mathclap{\rightarrow}}{\hat{c_j}}\right]= \lim_{\delta,\delta'\to 0} \mean{c_{-j}(t+\delta')c_{+i}(t+\delta)}=-\lim_{\delta\to 0} \mathcolor{blue}{\mean{c_{+i}(t+\delta)c_{-j}(t)}} \notag\\[0.3cm]
+  \mean{c_{1i}(t+\delta)c_{1j}(t)} &= \frac{1}{2}(\mathcolor{red}{\mean{c_{+i}(t+\delta)c_{+j}(t)}}+\mathcolor{blue}{\mean{c_{+i}(t+\delta)c_{-j}(t)}}+\mathcolor{red}{\mean{c_{-i}(t+\delta)c_{+j}(t)}}\notag \\ & \quad +\mathcolor{blue}{\mean{c_{-i}(t+\delta)c_{-j}(t)}})\underset{\mathclap{\delta\to0^+}}{\longrightarrow}\frac{1}{2}(\mathcolor{red}{2\mean{\hat{c_i}\hat{c_j}}(t)}-\mathcolor{blue}{2\mean{\hat{c_j}\hat{c_i}}(t)})=\mean{\left[\hat{c_i},\hat{c_j}\right]}(t)\notag\\
   \end{align*}
-  where in the last equalities we closed the integration contour in the lower half complex $\omega$ plane (due to the $\delta\geq0$ constraint), we kept only the term with poles in the lower half plane, its contribute is the sum of its residues times $2\pi i$, the residue at infinity vanishes due to Jordan's lemma while the sum of the others is the sum of the projectors on all the eigenspaces of the matrix $Z+iX$, which we assume to be the identity. (eeeeh????)
-  \footnotetext{The factor 2 in $G(\omega)$ comes from the normalization: a factor $1/2$ in front of the action is the ``standard'' normalization and every excess contributes to Green functions. }
+  \begin{equation}
+  \Gamma_{ij}=\frac{i}{2}\lim_{\delta\to0^+}\mean{c_{1i}(t+\delta)c_{1j}(t)}=\frac{i}{2}\lim_{\delta\to0^+}iG^K_{ij}(t+\delta,t)=-\frac{1}{2}\lim_{\delta\to0^+}G^K_{ij}(t+\delta,t)
+  \end{equation}
+  Analogously, it can be proved in the same way
+  \begin{equation*}
+   \Gamma_{ij}=-\frac{1}{2}\lim_{\delta\to0^+}G^K_{ij}(t,t+\delta)
+  \end{equation*}
+  \nl
+  The equation of motion $G_K$ obeys can be derived from the action: $G_K=-G^RP^KG^A$ and, in our case \footnote{The factor 2 comes from the normalization chosen: a factor $1/2$ in front of the action is the ``standard'' normalization and every excess contributes to Green functions. },
+  \begin{equation*}
+   \begin{array}{ccc}
+    G^R=2\frac{1}{i\partial_t-Z+iX} & G^A=2\frac{1}{i\partial_t-Z-iX} & P^K=\frac{1}{2}Y
+   \end{array}
+   \end{equation*}
+  \begin{equation}
+   (G^R)^{-1}G^K = -P^KG^A \quad\ra\quad (i\partial_t -Z -iX)G^K(t,t')=-2YG^A(t,t') \label{eq:keldysh_dysoneq}
+  \end{equation}
+  Now we can derive the equation of motion $G^K(t+\delta,t)$ obeys. We divide the derivation into steps: 
+  \begin{enumerate}
+   \item for $t\neq t'$, $\mean{c_i(t)c_j(t')}=-\mean{c_j(t')c_i{t}} \quad \ra \quad G^K(t',t)=-[G^K(t,t')]^T$
+   \item from \ref{eq:keldysh_dysoneq}, $$\displaystyle i\partial_tG^K(t+\delta,t')|_{t'=t} = ZG^K(t+\delta,t) -iXG^K(t+\delta,t)-YG^A(t+\delta,t)$$
+   \item $\displaystyle i\partial_{t'}G^K(t+\delta,t')|_{t'=t} = -\left[i\partial_{t'}G^K(t',t+\delta)\right]^T$, so, from \ref{eq:keldysh_dysoneq} again and using $\displaystyle X^T=X,\ Y^T=-Y,\ Z^T=-Z$, one has $$\displaystyle i\partial_{t'}G^K(t+\delta,t')|_{t'=t} = - G^K(t+\delta,t)Z - G^K(t+\delta,t)iX-\left[G^A(t,t+\delta)\right]^TY$$
+   \item $\displaystyle G^A_{jk}(t,t')=+i\theta(t'-t)\left\{\hat{c_j}(t),\hat{c_k}(t')\right\}$, so $\displaystyle G^A_{jk}(t+0^+,t)=0,\ G^A_{jk}(t,t+0^+)=2i\delta_{jk}$
+   \item $\displaystyle\dot{\Gamma}=-\frac{1}{2}\lim_{\delta\to0^+}\frac{d}{dt}G^K(t+\delta,t)=-\frac{1}{2}\lim_{\delta\to0^+}\left[\partial_tG^K(t+\delta,t')|_{t'=t}+\partial_{t'}G^K(t+\delta,t')|_{t'=t}\right]$; at the end we get
+   \begin{align*}
+    i\dot{\Gamma} &= Z\Gamma - \Gamma Z - iX\Gamma -i\Gamma X +\frac{1}{2}\lim_{\delta\to 0^+}\left[\cancel{YG^A(t+\delta,t)}+ G^A(t+\delta,t)^TY\right] = \\
+    &= \big[Z,\Gamma\big] -i\big\{X,\Gamma\big\} +iY \\
+    \dot{\Gamma} &= -i\big[Z,\Gamma\big] -\big\{X,\Gamma\big\} +Y
+   \end{align*}
+   which is the desired result.
+  \end{enumerate}
+ \pagebreak
 
-  \np
-  
-  
-  
  \appendix
  \section{Majorana doubling trick}
  \label{sec:majorana_doubling_theory}
@@ -508,10 +517,8 @@
   \item correlation functions of the physical operators are unchanged: P and $c(t)$ commute at all times; the Heisenberg operator $PcP(t)$ is the same (the same matrix elements on the p.s. and 0 every other) as $c(t)$ before; $\mean{c(t)c(t')\dots}$ before = $\mean{c(t) c(t')\dots}$ now (\textit{proof:} $\mean{c(t)c(t')\dots}$ before = $\mean{Pc(t)P\, Pc(t')P\dots}$ is true because they have the same matrix elements; $P\rho P = \rho$, so in the correlator on the extended space the initial state can ``produce'' as many P as required; P and $c(t)$ commute at all times, so one can reproduce the correlator with all the P insertions);
   \item usual functional-integral-from-QME derivation now perfectly works: we have a complex hilbert space, Dirac modes and Grassmann variables. Boundary conditions are the last problem: it must be proven that the d field is 0 at the initial time. Possible proof: expand $\rho$ in terms of all the observables generated by Majorana modes (possible because they produce the same algebra of observables of Dirac modes!) in order to easily enforce $P\rho P=\rho$; write the obtained expansion in terms of Dirac modes and compute the matrix elements; switch back to Grassmann fields $c$ and $d$ to check boundary conditions.
  \end{itemize}
- \np
+ \pagebreak
 
-   
-   
 \bibliography{../library}{}
 \bibliographystyle{alpha}  
 \end{document}
