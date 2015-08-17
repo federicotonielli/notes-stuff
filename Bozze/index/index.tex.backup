@@ -111,8 +111,11 @@
  \nsec  
  
  \section{From QME to Keldysh Field Theory}
-  \subsection{Quadratic QME to Quadratic NEqFT}
+  \subsection{Features of a generic FT for Open Quantum systems}
    \begin{enumerate}
+    \item Gell-Mann and Low theorem doesn't hold for generic Non-Equilibrium systems (as pointed out in Altland, Haugh and 
+    \item Density matrices have two indices and time evolution acts on both in a nontrivial way: degrees of freedom must be doubled (argument 1)
+    \item Exactly solvable example (fermions with pump and loss) to show that FDT doesn't hold: this is what Non-Equilibrium means and this is why the number of independent Green's functions (and thus of degrees of freedom) must be doubled (argument 2) 
     \item Derivation of the Keldysh action in the $\pm$ basis  via coherent states decomposition and rotation to the bosonic-like RAK one
     \item Meaning of Green's functions expressing them as operator averages, prelude to ordering issues (as it is expressed in my derivation of Eisert and Prosen's results)
     \item What is Non Equilibrium? = violation of FDT in our language (?, Yes); example for it (?, No)
@@ -127,7 +130,7 @@
    \begin{enumerate}
     \item Definition, scope and path-integral expression
     \item Exact propagator with a Keldysh structure always corresponds to a quadratic H and set of linear $L_i$ (?, it can be used afterwards to suggest that an approximation to $\Gamma^{(2)}$ can always be used to approximate the Lindblad dynamics) 
-    \item Discussion of symmetries in the NEq context (?, No)
+    \item Discussion of symmetries in the NEq context (?, it's crucial that our system lacks of time-reversal invariance, but then we should also mention continuous symmetries because it has a global U(1) and then also Nöther's theorem.. No)
    \end{enumerate}
   \nsec 
   
@@ -135,7 +138,7 @@
    \subsection{Why?}
     \begin{enumerate}
      \item Idea behind engineered dissipation
-     \item Model under study: $p_x+ip_y$ superconductor ground state (not the only interesting state realizable with the procedure!)
+     \item Model under study: $p_x+ip_y$ superconductor ground state (not the only interesting state realizable!)
     \end{enumerate}
    \subsection{Physical Setting}
     \begin{enumerate}
@@ -160,11 +163,7 @@
      \item Can we identify where factorization and purity of the NESS enter in the two-loop diagrams?
     \end{enumerate}
 
-  \section{Great absents}
-   \begin{enumerate}
-    \item Symmetries in NEqFT (Time Reversal since our system doesn't have it, Noether's theorem for continuous symmetries? I don't think the second is necessary, but if we insert a paragraph for the first a comment about the second becomes almost mandatory..)
-    \item What changes if we add Hamiltonian/Lindblad perturbations (of course it is absent: it would require additional work! However, the first question I will receive will be ``physical systems have also Hamiltonian dynamics...'' I \underline{must} have something to tell about it.)
-   \end{enumerate}
-
+  \section{Great absent}
+    What changes if we add Hamiltonian/Lindblad perturbations? (of course it is absent: it would require additional work! However, the first question I will receive will be ``physical systems have also Hamiltonian dynamics...'' I \underline{must} have something to tell about it.)
     
 \end{document}
