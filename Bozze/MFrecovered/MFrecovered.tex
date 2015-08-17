@@ -1,0 +1,122 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{vmargin}
+
+\usepackage[all]{xy}
+\usepackage{graphicx}
+\usepackage{framed}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}   
+\usepackage[english]{babel}
+% \usepackage{fullpage}
+\usepackage{hyperref}
+
+\usepackage{enumitem}
+\usepackage{xfrac}
+\usepackage{slashed}
+\usepackage{color}
+\usepackage{cancel}
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+%-------------------------------------------------------------------------------
+
+\allowdisplaybreaks[4]
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\ssection}[2]{\section{ \texorpdfstring{\textbf{#1}}{#2} }}
+
+\newcommand{\HRule}{\center{\rule{0.9\linewidth}{0.5mm}}}
+
+% add these definistions to the definitions' file!!!!!!! --------------------------------------
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Det}{Det}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\mean}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\kett}[1]{\ensuremath{\left | #1 \right \rangle}}
+\newcommand{\brat}[1]{\ensuremath{\left \langle  #1 \right | }}
+\newcommand{\ket}[1]{\left | #1 \right \rangle}
+\newcommand{\bra}[1]{\left \langle  #1 \right |}
+\newcommand{\ro}{\rho}
+\newcommand{\ra}{\rightarrow}
+
+\newcommand{\nline}{\\[0.3cm]}
+\newcommand{\nlspace}{\vskip 0.3cm}
+\newcommand{\nsec}{\vskip 0.8cm}
+\newcommand{\npar}{\vskip 1.3cm}
+
+\newcommand{\obar}[1]{\overline{#1}}
+\newcommand{\ubar}[1]{\underline{#1}}
+\newcommand{\psibar}{\bar{\psi}}
+\newcommand{\sigmatilde}{\tilde{\sigma}}
+
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\demu}[1]{\partial#1{\mu}}
+\newcommand{\denu}[1]{\partial#1{\nu}}
+\newcommand{\pder}[3]{\dfrac{\partial^{#1} #2}{\partial^{#1} #3}}
+\newcommand{\de}[1]{\frac{d^2#1}{(2\pi)^2}}
+
+\newcommand*{\mathcolor}{}  %allows to change the colour inside math mode without destroying the correct spacing like with \textcolor
+\def\mathcolor#1#{\mathcoloraux{#1}}
+\newcommand*{\mathcoloraux}[3]{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+ 
+% ---------------------------------------------------------------------------------------------
+
+
+% ---- info ---------
+\title{MFrecovered} 
+\author{Federico Tonielli}
+
+%  \chapter{MFrecovered}
+%  \label{Chapter4}
+% ---- document -----
+
+\begin{document} 
+ 
+\begin{itemize}
+ \item action of the quadratic and quartic models in $\pm$ and RAK basis; Green's functions of the quadratic model
+ 
+ \item in a linearized MF model Lindblad operators determine all Green's functions; knowing the Green's functions we can in principle write down a quadratic dynamics which determines them, and this case is not an exception, but as it stands this procedure has not much physical significance
+ 
+ \item in our case the NESS is known; this knowledge allows us to obtain such linear Lindblad operators as MF approximations to the exact ones and to identify the regime of validity of the approximation according to the properties of the exact NESS: it holds at late times and in the thermodynamic limit (in which order???), when the density matrix becomes approximately factorized and tends towards the pure BCS state; \\ \underline{Note}: the physical meaning of the linear operators is crystal clear in this case: they generate a time evolution which approximates very well the exact one at late times and in the thermodynamic limit.
+ 
+ \item if no exact info on the NESS is available (and this is often the case working in a functional formalism) DMFT still provides a self-consistent recipe to find linear Lindblad operators which generate approximate late-time dynamics: with the factorization hypotesis, MF Lindblad operators can be expressed in terms of averages of field operators (i.e. of the equal-times Green's functions) and then self-consistently determine them as already said before (simply by inversion of $S^{(2)}$ in which they enter).
+ 
+ \item now we will identify the field-theoretic analog of the last formulation of DMFT and we will explicitly show that results obtained by \cite{Bardyn2013} can be recovered as self-consistent MF solutions:
+  \begin{enumerate}
+   \item averaging 2 out of 4 operators in the quartic QME is like contracting 2 out of 4 fields in the quartic vertex $\rightarrow$ diagram
+   \item replacing the unknown average with the BCS one or with a Green's function to be determined self-consistently is like replacing the bare Green's function with the exact one
+   \item assumptions on such Green's functions are the counterpart of the factorization hypotesis and allow us to simplify the equations/reduce the number of free parameters
+   \item all 1-loop contributions to the irreducible self-energy are of the kind described above; since a self-consistent DMFT uses only those to determine the approximate Green's functions, the MF equations are, in the field-theoretic language, 1-loop improved Schwinger-Dyson equations
+   \item BCS GFs exactly solve this equation; adding Hamiltonian or Lindblad perturbations makes the equations unsolvable and thus they must be treated iteratively
+   \item higher loop diagrams correct this result introducing nonlinear terms in the equations
+  \end{enumerate}
+
+\end{itemize}
+
+ 
+ 
+ \bibliography{../../library.bib}{}
+ \bibliographystyle{alpha}  
+\end{document}
