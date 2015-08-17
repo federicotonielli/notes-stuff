@@ -1,0 +1,166 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{vmargin}
+
+\usepackage[all]{xy}
+\usepackage{graphicx}
+\usepackage{framed}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}   
+\usepackage[english]{babel}
+% \usepackage{fullpage}
+\usepackage{hyperref}
+
+\usepackage{enumitem}
+\usepackage{xfrac}
+\usepackage{slashed}
+\usepackage{color}
+\usepackage{cancel}
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+%-------------------------------------------------------------------------------
+
+\allowdisplaybreaks[4]
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\ssection}[2]{\section{ \texorpdfstring{\textbf{#1}}{#2} }}
+
+\newcommand{\HRule}{\center{\rule{0.9\linewidth}{0.5mm}}}
+
+% add these definistions to the definitions' file!!!!!!! --------------------------------------
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Det}{Det}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\mean}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\kett}[1]{\ensuremath{\left | #1 \right \rangle}}
+\newcommand{\brat}[1]{\ensuremath{\left \langle  #1 \right | }}
+\newcommand{\ket}[1]{\left | #1 \right \rangle}
+\newcommand{\bra}[1]{\left \langle  #1 \right |}
+\newcommand{\ro}{\rho}
+\newcommand{\ra}{\rightarrow}
+
+\newcommand{\nline}{\\[0.3cm]}
+\newcommand{\nlspace}{\vskip 0.3cm}
+\newcommand{\nsec}{\vskip 0.8cm}
+\newcommand{\npar}{\vskip 1.3cm}
+
+\newcommand{\obar}[1]{\overline{#1}}
+\newcommand{\ubar}[1]{\underline{#1}}
+\newcommand{\psibar}{\bar{\psi}}
+\newcommand{\sigmatilde}{\tilde{\sigma}}
+
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\demu}[1]{\partial#1{\mu}}
+\newcommand{\denu}[1]{\partial#1{\nu}}
+\newcommand{\pder}[3]{\dfrac{\partial^{#1} #2}{\partial^{#1} #3}}
+\newcommand{\de}[1]{\frac{d^2#1}{(2\pi)^2}}
+
+\newcommand*{\mathcolor}{}  %allows to change the colour inside math mode without destroying the correct spacing like with \textcolor
+\def\mathcolor#1#{\mathcoloraux{#1}}
+\newcommand*{\mathcoloraux}[3]{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+ 
+% ---------------------------------------------------------------------------------------------
+
+
+% ---- info ---------
+\title{Outline of possible contents}
+\author{Federico Tonielli}
+% ---- document -----
+
+\begin{document} 
+
+ \section{Intro}
+  \begin{enumerate}
+   \item the whole theory will be developed for fermions; a literature for bosons is already available and here some small technical adjustments are carried out following the same programme
+   \item the first question can well be: what does ``non equilibrium'' mean? The answer will be given later in the 3rd chapter
+   \item another can be: why non-equilibrium? why non-equilibrium fermions? Among all intriguing phenomena which are exclusive non-eq. features (examples? No), the one on which we will focus is the possibility to engineer states of matter with interesting pairing and topological properties 
+   \item in this thesis we shall explain what is the mechanism behind this, how to build effective quadratic theories (BdG-like) to describe these states, what is the field-theoretic analog of this Mean Field mapping and we will explicitly evaluate corrections to MF
+  \end{enumerate}
+ \nsec
+ 
+ \section{Dynamics of Open Quantum systems}
+  \subsection{General and Markovian Open Quantum systems}
+   \begin{enumerate}
+    \item Description of open quantum systems using a density matrix and not a pure state; problems of finding a satisfactory dynamical equation for it
+    \item QME for Markovian systems; discussion of the physical setting in which it approximately holds (i.e. of the approximations to be made to derive it and of the systems for which they hold)
+   \end{enumerate}
+  \subsection{QME, derivation}
+   Derivation of the QME tracing out bath degrees of freedom in 2nd order time-dependent PT (maybe in an appendix?) 
+ \nsec  
+ 
+ \section{From QME to Keldysh Field Theory}
+  \subsection{Quadratic QME to Quadratic NEqFT}
+   \begin{enumerate}
+    \item Derivation of the Keldysh action in the $\pm$ basis  via coherent states decomposition and rotation to the bosonic-like RAK one
+    \item Meaning of Green's functions expressing them as operator averages, prelude to ordering issues (as it is expressed in my derivation of Eisert and Prosen's results)
+    \item What is Non Equilibrium? = violation of FDT in our language (?, Yes); example for it (?, No)
+   \end{enumerate}
+  \subsection{Interacting QME to Interacting NEqFT}
+   \begin{enumerate}
+    \item Ordering issue in T=0 QFT and point-splitting regularization as a way to solve it 
+    \item Derivation of the properly regularized Keldysh action tracing out bath degrees of freedom and then taking the Markov-RWA limit
+    \item Alternative derivation via coherent states decomposition      
+   \end{enumerate}
+  \subsection{Effective Action}
+   \begin{enumerate}
+    \item Definition, scope and path-integral expression
+    \item Exact propagator with a Keldysh structure always corresponds to a quadratic H and set of linear $L_i$ (?, it can be used afterwards to suggest that an approximation to $\Gamma^{(2)}$ can always be used to approximate the Lindblad dynamics) 
+    \item Discussion of symmetries in the NEq context (?, it's crucial that our system lacks of time-reversal invariance, but then we should also mention continuous symmetries because it has a global U(1) and then also Nöther's theorem.. No)
+   \end{enumerate}
+  \nsec 
+  
+  \section{Driven-Dissipative fermions}
+   \subsection{Why?}
+    \begin{enumerate}
+     \item Idea behind engineered dissipation
+     \item Model under study: $p_x+ip_y$ superconductor ground state (not the only interesting state realizable!)
+    \end{enumerate}
+   \subsection{Physical Setting}
+    \begin{enumerate}
+     \item How to implement the set of quadratic Lindblads
+     \item NESS for this set and its equivalence with the state of interest
+    \end{enumerate}
+   \subsection{Dissipative MFT}
+    DMFT as an approximate mapping from quartic (late) dynamics to quadratic dynamics
+  \nsec 
+  
+  \section{Field-theoretic treatment of the problem} 
+   \subsection{Self-Consistent 1-loop improved Schwinger-Dyson equation}
+    \begin{enumerate}
+     \item Schwinger-Dyson (formulated via the effective action formalism) identified as the FT analog of DMFT
+     \item G actually solves the equation (discussion on the way of solving it still missing: does it force the structure of G in any case? is the solution to it unique actually?)
+     \item The set of linear $L_i$ corresponding to G is actually the one already found (not verified, but strongly believe so: one can obtain this set given G going backwards through the way he could obtain G given the set)
+    \end{enumerate} 
+   \subsection{Corrections to DMFT}
+    \begin{enumerate}
+     \item Evaluation of all two-loops diagrams correcting G
+     \item What is the small parameter in the loop expansion?
+     \item Can we identify where factorization and purity of the NESS enter in the two-loop diagrams?
+    \end{enumerate}
+
+  \section{Great absent}
+    What changes if we add Hamiltonian/Lindblad perturbations? (of course it is absent: it would require additional work! However, the first question I will receive will be ``physical systems have also Hamiltonian dynamics...'' I \underline{must} have something to tell about it.)
+    
+\end{document}

@@ -519,8 +519,6 @@
  \end{itemize}
  \pagebreak
 
-   
-/nobibliography{../library}   
-% \bibliography{../library}{}
-% \bibliographystyle{alpha}  
+\bibliography{../library}{}
+\bibliographystyle{alpha}  
 \end{document}

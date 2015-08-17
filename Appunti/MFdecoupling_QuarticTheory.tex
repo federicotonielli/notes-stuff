@@ -1,0 +1,527 @@
+\documentclass[a4paper,11pt, english]{article}
+
+\usepackage{amsmath, amssymb, amsthm, bbold}
+\usepackage{mathtools}
+ 
+\usepackage{vmargin}
+\usepackage[perpage]{footmisc}
+
+\usepackage[all]{xy}
+\usepackage{graphicx}
+\usepackage{framed}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{babel}
+% \usepackage{fullpage}
+\usepackage{hyperref}
+
+\usepackage{enumitem}
+\usepackage{xfrac}
+\usepackage{slashed}
+\usepackage{color}
+\usepackage{cancel}
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+%-------------------------------------------------------------------------------
+
+\allowdisplaybreaks[4]
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\ssection}[2]{\section{\texorpdfstring{\textbf{#1}}{#2}}}
+\newcommand{\ssubsection}[2]{\subsection{\texorpdfstring{#1}{#2}}}
+
+\newcommand{\HRule}{\center{\rule{0.9\linewidth}{0.5mm}}}
+
+% add these definistions to the definitions' file!!!!!!! --------------------------------------
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Det}{Det}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\mean}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\kett}[1]{\ensuremath{\left | #1 \right \rangle}}
+\newcommand{\brat}[1]{\ensuremath{\left \langle  #1 \right | }}
+\newcommand{\ket}[1]{\left | #1 \right \rangle}
+\newcommand{\bra}[1]{\left \langle  #1 \right |}
+\newcommand{\ro}{\rho}
+
+\newcommand{\nline}{\\[0.3cm]}
+\newcommand{\nlspace}{\vskip 0.3cm}
+\newcommand{\nsec}{\vskip 0.8cm}
+\newcommand{\npar}{\vskip 1.3cm}
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3}}
+\newcommand{\Vast}{\bBigg@{4}}
+\makeatother
+
+\newcommand{\obar}[1]{\overline{#1}}
+\newcommand{\ubar}[1]{\underline{#1}}
+\newcommand{\psibar}{\bar{\psi}}
+\newcommand{\Psibar}{\bar{\Psi}}
+\newcommand{\gammabar}{\bar{\gamma}}
+\newcommand{\sigmatilde}{\tilde{\sigma}}
+
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\demu}[1]{\partial#1{\mu}}
+\newcommand{\denu}[1]{\partial#1{\nu}}
+\newcommand{\pder}[3]{\dfrac{\partial^{#1} #2}{\partial^{#1} #3}}
+\newcommand{\de}[1]{\frac{d^2#1}{(2\pi)^2}}
+
+\newcommand*{\mathcolor}{}  %allows to change the colour inside math mode without destroying the correct spacing like with \textcolor
+\def\mathcolor#1#{\mathcoloraux{#1}}
+\newcommand*{\mathcoloraux}[3]{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+ 
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}} 
+% ---------------------------------------------------------------------------------------------
+
+
+% ---- info ---------
+\title{Notes: MF and decoupling of a quartic Lindbladian}
+\author{Federico Tonielli}
+
+
+% ---- document -----
+\begin{document}
+
+ \maketitle
+ 
+ \tableofcontents
+ \blankpage
+ 
+\begin{abstract}
+ \textbf{To Sebastian:} this chapter still contains ``raw data'';
+ \begin{itemize}
+  \item the first  paragraph was supposed to be ``raw'' from the beginning, since the chapter is thought as a part of ``the bigger picture'': I had to fix the notation and to sum up the nontrivial concepts used throughout the chapter. I wrote down explicitly the time-regularization one; please, judge if it is correct.
+  \item you'll find bold sentences or questions throughout the text, they are for you!
+  \item the second and third paragraphs still contain also some red comments I made to remind myself to modify something, but they concern always things of a minor importance.
+  \item the third paragraph contains still ``bare'' parts, 3.2 and 3.3, I have to ``dress`` them. While the analysis of symmetries is done in full details on paper, the analysis of the (cl,q) action to find the meaning of the fields via Green's functions has not been done yet: I've found a fully self-consistent way to decouple only yesterday.
+  \item notation is uniform between 2nd and 3rd paragraphs, but I worked in time/frequency + momentum space in 2nd par. and in time+real space in 3rd par.; this should be adjusted, shouldn't it? Maybe I can work in time+real only for decoupling formulas and then write the action in frequency+momentum in (3.2) and (3.3).
+ \end{itemize}
+ \pagebreak
+
+\end{abstract}
+\section{Notation}
+ \begin{itemize}
+  
+  \item Indices and arguments of creation and destruction operators always refer to physical properties of the states they are acting on: for example, $\hat{a}_i^+$ or $\hat{a}_i$ create or annihilate modes localised at $x_i$ and $\hat{a}_q^+$ or $\hat{a}_q$ create  or annihilate modes with quasi-momentum $q$. It's worth remarking that, using this notation, the Fourier transform of $\hat{a}_i^+$ is $\hat{a}_{-q}^+$, not $\hat{a}_q^+$.
+   
+  \item Whenever this does not cause an ambiguity, we will use the same notation for fields and operators, relabeling $\hat{a} \rightarrow a$ and $\hat{a}^+ \rightarrow \bar{a}$, having indices and/or arguments of fields the same physical meaning as above.
+  
+  \item Our convention for conjugation of fermionic fields is
+    \begin{equation*} 
+     \left \{ \begin{aligned}
+     & \obar{(a)}\equiv +\bar{a},\ \obar{(\bar{a})}\equiv +a \\
+     & \obar{(ab)} \equiv \bar{b}\,\bar{a}
+	      \end{aligned}
+     \right .
+    \end{equation*}
+%     it  differs from the one adopted by \cite{Efetov1983}: 
+   
+  \item To be consistent with the correspondence fields $\leftrightarrow$ operators, Fourier transform of fermionic fields is defined in such a way that  the convention used for $a(x)$ uniquely determines the one for $\bar{a}(x)$, as if it were its ``complex conjugate'', like it happens for operators or bosonic fields: set $Q \equiv (\omega,q)$, then 
+   \begin{align*}
+   & \left \{ \begin{aligned}
+     & a(Q) \equiv \int dt\,d^dx\ e^{+i\omega t -iq\cdot x}\, a(t,x) \\
+     & \bar{a}(Q) \equiv \int dt\,d^dx\ e^{-i\omega t +iq\cdot x}\, \bar{a}(t,x)
+	    \end{aligned}
+     \right .\\
+   \intertext{or, for fermion modes defined on a lattice in the thermodynamic limit,}
+   &  \left \{ \begin{aligned}
+     & a(Q) \equiv \sum_{j\in \mathbb{Z}^d} \int dt\ e^{+i\omega t -iq\cdot x_j}\, a_j(t) \\
+     & \bar{a}(Q) \equiv \sum_{j\in \mathbb{Z}^d} \int dt\ e^{-i\omega t +iq\cdot x_j}\, \bar{a}_j(t)
+	    \end{aligned}
+     \right .
+   \end{align*}
+  
+%    \begin{align*}
+%     &a(t,x) \leftrightarrow \hat{a}(t,x) \rightarrow \hat{a}(Q) = \int dt\,d^dx\ e^{+iQ\cdot(t,x)}\, \hat{a}(t,x) \leftrightarrow a(Q) \\
+%     &\bar{a}(t,x) \leftrightarrow (\hat{a}(t,x))^+ \rightarrow 
+%    \end{align*}
+%    This convention allows us, at least when performing Fourier transforms, to assume as a rule of thumb that $\bar{a}$ is the complex conjugate of $a$ also for fermionic fields, despite being these Grassmann variables and not complex numbers.
+   
+  \item Nambu spinors are defined so that energy and momentum are outgoing and equal to Q: 
+   \begin{equation*}
+    \Psi(Q)\equiv \begin{pmatrix}
+           a(Q) \\
+           \bar{a}(-Q)
+          \end{pmatrix}, \ \ \ 
+    \Psi(t,x)\equiv\begin{pmatrix}
+		    a(t,x) \\
+		    \bar{a}(t,x)
+		    \end{pmatrix}
+   \end{equation*}
+   These conventions together with the previous one make this formula true (by definition):
+   \begin{equation*}
+    \Psi(Q)= \int dt\,d^dx\ e^{+i\omega t -iq\cdot x}\, \Psi(t,x),
+   \end{equation*}
+    that is, Fourier transform is ``diagonal'' in Nambu space.
+    
+  \item Our convention for fermionic Keldysh rotation differs from the customary one (Larkin-Ovchinnikov, \cite{Kamenev2011}):
+    \begin{align*}
+     &\begin{pmatrix}
+   a_1\\ a_2 \\ \bar{a}_1 \\ \bar{a}_2 
+   \end{pmatrix}
+   \equiv \frac{1}{\sqrt{2}}
+   \begin{pmatrix}
+   1 & 1 & 0 & 0\\ 1 & -1 & 0 & 0 \\ 0 & 0 & 1 & 1\\ 0 & 0 & 1 & -1 
+   \end{pmatrix}
+   \begin{pmatrix} 
+    a^+ \\ a^- \\ \bar{a}^+ \\ \bar{a}^-
+   \end{pmatrix}
+   = \frac{1}{\sqrt{2}}
+   \left( \begin{aligned} &1 &1\\&1&-1  \end{aligned} \right)_K \otimes \scalebox{1.3}{$\mathbb{1}$}^{ }_N\,\begin{pmatrix} 
+    a^+ \\ a^- \\ \bar{a}^+ \\ \bar{a}^-
+   \end{pmatrix}\\
+   \intertext{instead of}
+    &\begin{pmatrix}
+   a_1\\ a_2 \\ \bar{a}_1 \\ \bar{a}_2 
+   \end{pmatrix}
+   = \frac{1}{\sqrt{2}}
+   \begin{pmatrix}
+   1 & 1 & 0 & 0\\ 1 & -1 & 0 & 0 \\ 0 & 0 & 1 & -1\\ 0 & 0 & 1 & 1 
+   \end{pmatrix}
+   \begin{pmatrix} 
+    a^+ \\ a^- \\ \bar{a}^+ \\ \bar{a}^-
+   \end{pmatrix};
+    \end{align*}
+    this way it commutes with operators which act only on Nambu space (like Majorana rotation and multiplication by functions $u_q$ and $v_q$). The 2x2 Keldysh rotation is so important to deserve a definition and a list of some useful properties:
+    \begin{align*}
+     &\bar{\sigma} \equiv \frac{1}{\sqrt{2}} \begin{pmatrix} 1 &1\\1&-1  \end{pmatrix}=\frac{1}{\sqrt{2}}\left(\sigma^1+\sigma^3\right);& &\bar{\sigma}\,^+=\bar{\sigma}\,^{-1}=\bar{\sigma} \\
+     &\bar{\sigma}\begin{pmatrix}1&0\\0&0 \end{pmatrix}\bar{\sigma} = \frac{1}{2}\begin{pmatrix}1&1\\1&1 \end{pmatrix}& &\bar{\sigma}\begin{pmatrix}0&1\\0&0 \end{pmatrix}\bar{\sigma} = \frac{1}{2}\begin{pmatrix}1&-1\\1&-1 \end{pmatrix}\\
+     &\bar{\sigma}\begin{pmatrix}0&0\\1&0 \end{pmatrix}\bar{\sigma} = \frac{1}{2}\begin{pmatrix}1&1\\-1&-1 \end{pmatrix}& &\bar{\sigma}\begin{pmatrix}0&0\\0&1 \end{pmatrix}\bar{\sigma} = \frac{1}{2}\begin{pmatrix}1&-1\\-1&1 \end{pmatrix}\\
+    \end{align*}  
+  \end{itemize}
+  
+% \vspace{-0.5cm}  
+% \subsection{Concepts}
+% \begin{itemize}
+%  \item Born, Markov and RW approximations, which lead to a Lindblad form for the QME \textbf{[What else? How to structure this previous chapter on QME?]}
+%  \item Symmetries and Noether's theorem in the Keldysh framework \textbf{[I have some ideas already, but I'd need to study it more.]}
+%  \item Time regularization prescription: 
+%   \begin{enumerate}
+%    \item A step required to switch from an Hamiltonian description in terms of operators to a functional integral for a QFT at equilibrium is normal ordering of the operators that appear in the Hamiltonian. When computing the time evolution kernel using the former description, time ordering has to be explicitly applied to the exponential of the interaction Hamiltonian in the interaction picture, but an ambiguity arises since all the terms of the interaction Hamiltonian are products of operators formally evaluated at the same time. The functional description does not have this problem, since time ordering is implicit in it. Normal ordering solves this ambiguity for operators and allows us to derive the correct functional integral for the QFT from the knowledge of the Hamiltonian, since it specifies the order (in time) at which operators in a product act. \textbf{[some reference to make this assertion more explicit and concrete?]}
+%    \item The very same step has to be performed for a closed time contour; however, details for a closed system are the same as in the previous case Hamiltonian and they are carried out for example in \cite{Kamenev2011}. \textbf{[Some of these details have to be repeated in the Keldysh chapter, which will also contain this discussion: definition of the closed time contour, computation of averages via quantum sources, coherent state derivation of the Keldysh functional integral (no proof, only the statement; I have to show the universality of the time evolution term and why such details about normal ordering are equal up to this point).]}
+%    \item Non-equilibrium dynamics generated by a QME has the same problem, since Markov approximation hides the fine causal structure which is behind the master equation, having all operators in the Lindbladian the same time argument. Having the goal of deriving a functional integral to compute physical observables for the system knowing the form of the QME alone, the first fact to notice is that the problem is well-defined: all multi-time correlators are naturally defined as averages of products of operators in the Heisenberg picture for the full system + environment, but Gardiner's formula expresses them in terms of Schr\"{o}dinger operators and of the time evolution kernel of the QME alone. For this reason, it will be enough to reproduce this kernel, even if the field theory is derived from a different Hamiltonian purification of the dynamics (i.e. a different environment dynamics + interaction Hamiltonian). The most suitable programme is then to find the simplest of such purifications, namely the interaction with a bath of harmonic oscillators, to derive a Keldysh field theory for the full system and then to integrate out the oscillators' degrees of freedom in the Born-Markov-RW approximation. This will also give the correct time regularization prescription.
+%    \item This programme has been carefully carried out in \cite{Sieberer2014} for bosonic Lindblad operators. Their result is the following: Lindblad operators have to be normal-ordered separately (not their product, as one would have expected), specifying however a relative ``infinitesimal time difference'' between the two. This time difference can be interpreted as the effect of a ``bath insertion'' between the two Lindblad operators, a contribution from a bath propagator which, being the bath Markovian, lasts for ``infinitesimally short'' time. This prescription is then a \textit{causality} prescription as normal ordering itself.
+%   \end{enumerate}
+%  At the end the dissipative contribution to the regularized Keldysh action is 
+%   \begin{equation*}
+%    S_{diss} = -i\int_t \left[L_-^*(t)L_+^{ }(t-\delta) - \frac{1}{2}L_+^*(t)L_+^{ }(t-\delta) -\frac{1}{2}L_-^*(t)L_-^{ }(t+\delta)\right]
+%   \end{equation*}
+%  where $\pm$ are the usual contour indices and integration over all other coordinates is omitted. \textbf{[I should now explain how the loop-diagrams' analysis shows the connection between this regularization and the normal ordering: a contraction of the 4-point vertex gives for example the same contribution the term produced by normal ordering $L^+L$ would have given; time regularization prescription tells us actually how to regularize the frequency integral involved in this contraction. I don't know how to state this fact properly (maybe analysing how these diagrams contribute to the effective action?) and in a general way though.]}
+% \end{itemize}
+\pagebreak
+
+
+
+\section{Field theory for quadratic and quartic models} 
+In this section we introduce the two models under study in terms of the QME generating their dynamics, as already been done in \cite{Bardyn2012} and \cite{Bardyn2013}, we shall explain what links the two models, we write explicitly the dissipative part of their Keldysh action and comment on the symmetry properties of both actions.\nline 
+The setting for both models consists of an ensemble of spinless Dirac fermions on a lattice, the dynamics of which is supposed to be dominated by dissipation. For dissipative processes Born, Markov and Rotating Wave approximations are supposed to hold.\nline Lindblad operators of the quartic model have the translation-invariant form, in real and momentum space respectively,
+\begin{align}
+ &l_i = \bar{C}_i\,A_i,\ \ \begin{cases}
+           A_i^{ } = \sum_j u_{i-j}\,a_j\\
+           \bar{C}_i =  \sum_j v_{i-j},\bar{a}_j \ \,\footnotemark \addtocounter{footnote}{-1}\addtocounter{Hfootnote}{-1}
+          \end{cases} & 
+ &l_q = \sum_{k}\bar{C}_{k-q}\,A_{k},\ \ \begin{cases}
+           A_q^{ } = u_q\,a_q\\
+           \bar{C}_q = v_{-q}\,\bar{a}_{q} \ \,\footnotemark
+          \end{cases}
+\label{eq:mHS_QuarticModelLindblad}          
+\end{align}
+\footnotetext{We recall conventions $\bar{a}\leftrightarrow \hat{a}^+$ and $\bar{a}_q \leftrightarrow \hat{a}_q^+ = (\hat{a}_q)^+$.}
+Complex functions $u$ and $v$ are supposed to have the important antisymmetry properties
+\begin{align}
+ &u_{-q} = \pm u_q & & v_{-q} = \mp v_q \label{eq:mHS_uvAntisymmetry}
+\end{align}\nlspace
+\hspace{-0.79 cm}  Lindblad operators of the quadratic model are still translation-invariant but are instead linear:
+\begin{align}
+ &L_i = \sqrt{\kappa}(A_i+\alpha \bar{C}_i) & 
+ &L_q = \sqrt{\kappa}(A_q+\alpha \bar{C}_{-q}) \label{eq:mHS_QuadraticModelLindblad}
+\end{align} 
+with $\kappa\geq 0$, $\alpha\in \mathbb{C}\setminus\{0\}$, $A$ and $\bar{C}$ being the same as in Eq.~\eqref{eq:mHS_QuarticModelLindblad}.\nline It is proven in Appendix A of \cite{Bardyn2013} that the two models are related: they are actually equivalent in the thermodynamic plus long time limit. The proof can be summarised as follows: 
+\begin{enumerate}      
+\item The quartic model is number-conserving and if the total number of particles is fixed the steady state is unique \footnote{No rigorous proof is available in the literature but uniqueness is supported by numerical simulations for spinful models \cite{Yi2012}.}. This state is  $\ket{BCS,\,N}$, the state with N Cooper pairs, each Cooper pair being created by the operator $\displaystyle \bar{G}=\sum_{k}\frac{v_k}{u_k}\,\bar{a}_{-k}\,\bar{a}_k$. 
+\item The quadratic model is not number-conserving. Uniqueness is however guaranteed for the quadratic model by antisymmetry condition~\eqref{eq:mHS_uvAntisymmetry} and the steady state is the unique ground state of the parent Hamiltonian $H = \sum_q \bar{L}_qL_q$. \footnote{A rigorous proof can be found in the supplementary material for \cite{Bardyn2012}. \textcolor{red}{Write something else about the parent Hamiltonian, i.e. it shares eigendirections and eigenvalues with the dissipative matrix X in mode space.}}This state is $\displaystyle \ket{BCS,\,\theta} = \exp\left\{\alpha\bar{G}\right\}\ket{\text{vac}}$, a coherent state, for which $|\alpha|$ determines the average density and $\displaystyle e^{i\theta}=\alpha/|\alpha|$ determines the fixed phase all Cooper pairs have. It's worth observing that, due to antisymmetry condition, this is a p-wave paired BCS ground state. 
+\item It is well known that these two steady states are equivalent in the thermodynamic limit, where exact conservation of the number of particles can be given up and be replaced by fixing only the average density. Therefore, in the long time plus thermodynamic limit, the quartic QME can be expanded for a density matrix near the approximate steady state $\ket{BCS,\,\theta}$ and Lindblad operators can be linearized in a Mean Field approximation, leading eventually to the quadratic QME.  \end{enumerate}
+\nlspace
+\subsection{Keldysh actions}
+A functional integral description of both models in terms of a Keldysh action can be obtained with the already stated rules. To this end, let us first observe that, in both Lindblad operators $l_q$ and $L_q$, both fields $a_q$ and $\bar{a}_{-q}$ appear and they are always multiplied by $u_q$ and $v_q$ respectively. It is then clear that the most convenient choice is to switch to Nambu formalism and to include the wavefunctions into the Nambu spinor, defining a new spinor:
+\begin{align}
+ \gamma(t,q)\equiv\begin{pmatrix}u_q & 0 \\ 0 & v_q \end{pmatrix}_{\!\!N}\begin{pmatrix} a(t,q) \\ \bar{a}(t,-q) \end{pmatrix}\equiv U_{q,N}\,\begin{pmatrix} a(t,q) \\ \bar{a}(t,-q) \end{pmatrix}\,=\,U_{q,N} \,\Psi(t,q) \label{eq:mHS_GammaSpinorDefinition}
+\end{align}\nlspace
+We will now write the dissipative part of the action for both models after this redefinition, in frequency and momentum space:
+\begin{subequations} \label{eq:mHS_QuadraticModelKeldyshAction} \begin{align} 
+iS_{diss}^{MF} =\int_{Q\,P}\!\delta(Q-P)\ \bigg[&
+	        \bar{\Psi}^-(Q) \begin{pmatrix}\kappa\,|u_q|^2 & \kappa\,\alpha\,u_q^*v_q^{ }  \\ \kappa\,\alpha^*\,v_q^*u_q^{ } & \kappa\,|\alpha|^2\,|v_q|^2 \end{pmatrix}_{\!\!N} \Psi^+_{ }(P) \notag \\
+   \ -\frac{1}{2} &\bar{\Psi}^+(Q) \begin{pmatrix}\kappa\,|u_q|^2 & \kappa\,\alpha\,u_q^*v_q^{ }  \\ \kappa\,\alpha^*\,v_q^*u_q^{ } & \kappa\,|\alpha|^2\,|v_q|^2 \end{pmatrix}_{\!\!N} \Psi^+_{ }(P)\\
+   \ -\frac{1}{2} &\bar{\Psi}^{ -}_{ }(Q) \begin{pmatrix}\kappa\,|u_q|^2 & \kappa\,\alpha\,u_q^*v_q^{ }  \\ \kappa\,\alpha^*\,v_q^*u_q^{ } & \kappa\,|\alpha|^2\,|v_q|^2 \end{pmatrix}_{\!\!N} \Psi^-_{ }(P)\bigg] = \notag \\
+		=\int_{Q\,P}\!\delta(Q-P)\ \bigg[&
+	        \bar{\gamma}^-(Q) \begin{pmatrix}\kappa & \kappa\,\alpha \\ \kappa\,\alpha^* & \kappa\,|\alpha|^2 \end{pmatrix}_{\!\!N} \gamma^+_{ }(P) \notag \\
+   \ -\frac{1}{2} &\bar{\gamma}^+(Q) \begin{pmatrix}\kappa & \kappa\,\alpha \\ \kappa\,\alpha^* & \kappa\,|\alpha|^2 \end{pmatrix}_{\!\!N} \gamma^+_{ }(P)\\
+   \ -\frac{1}{2} &\bar{\gamma}^{ -}_{ }(Q) \begin{pmatrix}\kappa & \kappa\,\alpha \\ \kappa\,\alpha^* & \kappa\,|\alpha|^2 \end{pmatrix}_{\!\!N} \gamma^-_{ }(P)\bigg] = \notag\\
+	       =\int_{Q\,P}\!\delta(Q-P)\ \Bigg[\begin{pmatrix} \bar{\gamma}^+(Q)&\bar{\gamma}^-(Q)\end{pmatrix} &
+	       \begin{pmatrix}-\frac{1}{2} & 0 \\ +1 & -\frac{1}{2}\end{pmatrix}_{\!\!K}\otimes
+	       \begin{pmatrix}\kappa & \kappa\,\alpha \\ \kappa\,\alpha^* & \kappa\,|\alpha|^2 \end{pmatrix}_{\!\!N}
+% 	       \begin{pmatrix}
+% 	       -\frac{1}{2}\kappa & -\frac{1}{2}\kappa\alpha & 0 & 0 \\ 
+% 	       -\frac{1}{2}\kappa\alpha^* & -\frac{1}{2}\kappa|\alpha|^2 & 0 & 0 \\
+% 	       +\kappa & +\kappa\alpha &  -\frac{1}{2}\kappa & -\frac{1}{2}\kappa\alpha  \\ 
+% 	       +\kappa\alpha^* & +\kappa|\alpha|^2 & -\frac{1}{2}\kappa\alpha^* & -\frac{1}{2}\kappa|\alpha|^2
+% 	       \end{pmatrix} 
+	       \begin{pmatrix}\gamma^+(Q)\\ \gamma^-(Q)\end{pmatrix} \Bigg]   
+	       \end{align} \end{subequations} 
+	\begin{equation}   
+\begin{aligned}
+ iS^Q_{diss}=\int_{Q\,Q'P\,P'}\!\!\!\delta(Q+Q'-P-P')\ \bigg[&\bar{\gamma}_{1}^-(Q)\,\bar{\gamma}_{2}^-(Q')\,\gamma_{2}^+(P)\,\gamma_{1}^+(P')\\
+  \ -\frac{1}{2} &\bar{\gamma}_{1}^+(Q)\,\bar{\gamma}_{2}^+(Q')\,\gamma_{2}^+(P)\,\gamma_{1}^+(P')\\
+  \ -\frac{1}{2} &\bar{\gamma}_{1}^-(Q)\,\bar{\gamma}_{2}^-(Q')\,\gamma_{2}^-(P)\,\gamma_{1}^-(P') \bigg]
+\end{aligned} \label{eq:mHS_QuarticModelKeldyshAction}
+% \begin{split}
+% iS_{diss}^{MF} =\int_{q\,p}\!\delta(q-p)\ \bigg[&
+% 	        \bar{\gamma}^-(t,q) \begin{pmatrix}\kappa & \kappa\,\alpha \\ \kappa\,\alpha^* & \kappa\,|\alpha|^2 \end{pmatrix} \gamma^+_{ }(t_{-\delta},p)\\
+%    \ -\frac{1}{2} &\bar{\gamma}^+(t,q) \begin{pmatrix}\kappa & \kappa\,\alpha \\ \kappa\,\alpha^* & \kappa\,|\alpha|^2 \end{pmatrix} \gamma^+_{ }(t_{-\delta},p)\\
+%    \ -\frac{1}{2} &\bar{\gamma}^{ -}_{ }(t,q) \begin{pmatrix}\kappa & \kappa\,\alpha \\ \kappa\,\alpha^* & \kappa\,|\alpha|^2 \end{pmatrix} \gamma^-_{ }			     (t_{+\delta},p)\bigg]
+% \end{split}   
+\end{equation}
+where a matrix structure has been introduced for the quadratic action, and the bar over the spinor means, when no index is explicitly written, transposition in addition to complex conjugation. \textcolor{red}{In (5c) write the 4x4 matrix explicitly.}\nline
+It can be noted at this stage that the interacting action Eq.~\eqref{eq:mHS_QuarticModelKeldyshAction} can be written in a symmetrized form. To this end, let us write the generic form of its terms in time and momentum space carrying time regularization explicitly:
+\begin{align}
+ &\int_{q\,q'p\,p'}\!\!\!\delta(q+q'-p-p')\  \bar{\gamma}_{1}(t,q)\,\bar{\gamma}_{2}(t,q')\,\gamma_{2}(t_{\pm\delta},p)\,\gamma_{1}(t_{\pm\delta},p') =\notag\\
+ &\overset{\footnotemark}{=}\int\,\frac{1}{2}\,\bigg( \bar{\gamma}_{1}(t)\,\gamma_{1}(t_{\pm\delta})\,\bar{\gamma}_{2}(t)\,\gamma_{2}(t_{\pm\delta})\ +\ \bar{\gamma}_{2}(t)\,\gamma_{2}(t_{\pm\delta})\,\bar{\gamma}_{1}(t)\,\gamma_{1}(t_{\pm\delta})     \bigg) = \notag \\
+ &= \int\,\frac{1}{2}\,\bigg( \bar{\gamma}_{1}(t)\,\gamma_{1}(t_{\pm\delta})\,\bar{\gamma}_{2}(t)\,\gamma_{2}(t_{\pm\delta})\ +\ \bar{\gamma}_{2}(t)\,\gamma_{2}(t_{\pm\delta})\,\bar{\gamma}_{1}(t)\,\gamma_{1}(t_{\pm\delta})\ + \notag\\ &\ \ \ \ \ \ +\ \mathbf{\bar{\gamma}_{1}(t)\,\gamma_{1}(t_{\pm\delta})\,\bar{\gamma}_{1}(t)\,\gamma_{1}(t_{\pm\delta}) \ +\ \bar{\gamma}_{2}(t)\,\gamma_{2}(t_{\pm\delta})\,\bar{\gamma}_{2}(t)\,\gamma_{2}(t_{\pm\delta})}   \bigg)= \notag\\ 
+ &=\int\, \frac{1}{2}\, \bar{\gamma}_{i}(t)\,\gamma_{i}(t_{\pm\delta})\,\bar{\gamma}_{j}(t)\,\gamma_{j}(t_{\pm\delta}) = \int\,\frac{1}{2}\,\bar{\gamma}_{i}(t)\,\bar{\gamma}_{j}(t)\,\gamma_{j}(t_{\pm\delta})\,\gamma_{i}(t_{\pm\delta}) \label{eq:mHS_QuarticModelKeldyshAction_Symmetrized}
+\end{align}
+ where terms added at the second step (in bold) give no contribution, as can be seen switching to real space:
+\footnotetext{Explicit momentum indices and conservation law have been omitted for notation simplicity.}
+ \begin{equation}
+  \begin{split}
+   &\int_{q\,q'p\,p'}\!\!\!\delta(q+q'-p-p')\  \bar{\gamma}_{1}(t,q)\,\gamma_{1}(t_{\pm\delta},p)\,\bar{\gamma}_{1}(t,q')\,\gamma_{1}(t_{\pm\delta},p') =  \\
+  &=\int_x\ \bar{\gamma}_{1}(t,x)\,\gamma_{1}(t_{\pm\delta},x)\,\bar{\gamma}_{1}(t,x)\,\gamma_{1}(t_{\pm\delta},x)=0,
+  \end{split} 
+  \label{eq:mHS_zerotermsadded}
+ \end{equation}
+because two couples of Grassmann fields multiplied together are evaluated at the same point in time and space, even taking into account the fine differences imposed by causality. Switching back to frequency and momentum space, we obtain an expression similar to Eq.~\eqref{eq:mHS_QuarticModelKeldyshAction} with an additional factor 1/2 and a difference in the tensorial structure of the interaction vertex: before we had only the quadruplet of indices 1-2-2-1 multiplied in this order, now we have formally (Eq.~\eqref{eq:mHS_QuarticModelKeldyshAction_Symmetrized}) all quadruplets i-j-j-i, summed over i and j; however, as already discussed, there is no physical difference between the two.\\ The symmetrized form here obtained is the same as the BCS-type quartic local interaction, at least for $++$ and $--$ terms in which $\gamma$ and $\bar{\gamma}$ have the same contour index.\nline
+In the end, let us remark 
+% Concerning the model \eqref{eq:mHS_QuadraticModelKeldyshAction}, \textbf{particle-hole is a symmetry of the parent hamiltonian since it can be brought to the form of H_BdG, and of the terms ++ and -- for the same reason... but what about -+? [I don't know how to treat it and how to write exactly particle-hole on the contour. Since a BdG Hamiltonian is exactly treatable as in Efetov, maybe knowing how to treat ]}.\\ 
+that the number conservation property of the quartic model (and its absence in the quadratic one) is evident also in the field theory formalism: the action of the former has in fact the gauge symmetry $U(1)_+\times U(1)_-$
+\begin{equation}
+ \begin{pmatrix} a^{\pm} \\ \bar{a}^{\pm} \end{pmatrix} \to \begin{pmatrix} e^{i\theta_{\pm}} & 0 \\ 0 & e^{-i\theta_{\pm}} \end{pmatrix} \begin{pmatrix} a^{\pm} \\ \bar{a}^{\pm} \end{pmatrix} 
+ \ \Rightarrow\ 
+ \begin{pmatrix} \gamma^{\pm} \\ \bar{\gamma}^{\pm} \end{pmatrix} \to \begin{pmatrix} e^{i\theta_{\pm}} & 0 \\ 0 & e^{-i\theta_{\pm}} \end{pmatrix} \begin{pmatrix} \gamma^{\pm} \\ \bar{\gamma}^{\pm} \end{pmatrix} \label{eq:mHS_U(1)Transform_KeldyshPM}
+ \end{equation}
+ the conserved charges of which are $\displaystyle \int_q \mean{a^+_q\bar{a}^+_q  \mp  a^-_q\bar{a}^-_q}  $, associated to the generators $(1,\pm 1)$; the $-$ one is identically zero, because the two terms correspond to the same operatorial average, while the $+$ one is equal to twice the total number of fermions. Since the quadratic action \eqref{eq:mHS_QuadraticModelKeldyshAction} does not contain only terms of the form $\bar{\gamma}^{\pm}\gamma^{\pm}$, this transformation cannot be a symmetry of it.
+\nsec
+
+\section{Mean Field theory for the Quartic action}
+\textcolor{red}{NELLA SEZIONE PRECEDENTE AGGIUNGI LA FORMA DI TUTTE LE AZIONI IN REAL SPACE}
+
+\section{Decoupling of the Quartic action}
+The aim of this section is to enlighten the correspondence between the models in a field-theoretic perspective: we want to decouple the quartic interaction \eqref{eq:mHS_QuarticModelKeldyshAction} using Hubbard-Stratonovich fields in such a way that a Mean Field approximation for them yields Eq.~\eqref{eq:mHS_QuadraticModelKeldyshAction}.\\ 
+This method allows us to identify unambiguously order parameters and their transformation properties under the action of the above mentioned gauge symmetry group $U(1)_+ \times U(1)_-$. After this step, it will be possible to minimally couple the non-symmetric model to a gauge field.\nsec
+
+% \subsection{Useful algebraic properties of the actions}
+% As a preliminary, let us identify two algebraic properties the actions possess, in order to use them to simplify the task of finding a suitable decoupling or to compare our choice with other possible ones.\nline
+% A rescaling $\gamma_2^{\pm} \to \alpha^{-1} \gamma_2^{\pm},\ \bar{\gamma}_2^{\pm} \to (\alpha^{-1})^*\bar{\gamma}^{\pm}_2 $ would bring the quadratic action to a very symmetric form
+% 
+% Use algebraic properties as a guide for hub-strat decoupling
+% 
+% - charge conjugation e time reversal?\\
+% - algebraic unphysical dilatation applied to $\gamma$ spinors (not to be confused with the complexification of the gauge U(1) symmetry); no conserved charges; quartic dissipative term is symmetric (but time evolution term is not, since it can't be written in terms of $\gamma$s) and quadratic dissipative term is not \nsec
+
+\subsection{Matrix Hubbard-Stratonovich formulas}
+As already pointed out, the symmetrized quartic interaction \eqref{eq:mHS_QuarticModelKeldyshAction_Symmetrized} has the same structure as a BCS-type local interaction. Therefore, possible ways of decoupling such a local interaction are unsurprisingly well studied (e.g. \cite{Altland2010Condensed}); here we will use some of them to obtain useful matrix formulas. \\
+In what follows, a continuum time-space notation has been used for convenience of notation; every result can be straightforwardly applied to the previously introduced model switching to a discrete space index or to momentum space. \nline
+% or \cite{Efetov1983}). We note however that, since we have not symmetrized the terms of the quadratic action (5a) to obtain a Bogolubov-de Gennes form, decoupling formulas will be slightly more complicated than some already present in the literature (e.g. \cite{Efetov1983}). This choice has been made because such a symmetrization is not possible for the $-+$ interaction vertex, which has no Hamiltonian counterpart, while it is for the $++$ and $--$ ones, and we wanted to treat the three interaction vertices as symmetrically as possible.\nline
+Hubbard-Stratonovich decoupling is summarised by formulas
+\begin{subequations}
+\label{eq:mHS_genericHubStrat}
+ \begin{align}
+   \exp\left[\,\theta_mV_{mn}\theta_n\,\right]\ &=\ \mathcal{N}^{-1} \int\,D\phi\,\exp\left[-\frac{1}{4}\phi_mV_{mn}^{-1}\phi_n \pm \phi_m\theta_m\right] \\
+   \exp\left[\,\bar{\theta}_mV_{mn}\theta_n\,\right]\ &=\ \mathcal{N}^{-1} \int\,D[\phi,\bar{\phi}]\,\exp\left[-\bar{\phi}_mV_{mn}^{-1}\phi_n^{ } \pm (\bar{\phi}_m\theta^{ }_m + \bar{\theta}_m\phi_m)\right] 
+ \end{align}
+\end{subequations}
+where the left hand side is the interaction term we want to decouple, which defines what $\theta$ should be, and $\phi$ is the decoupling field.\\ Following \cite{Altland2010Condensed}, three possibilities for $\theta$ (``channels'') can be introduced:
+% \renewcommand{\theenumi}{\alph{enumi}} \renewcommand{\labelenumi}{\alph{enumi}.}
+\begin{enumerate}
+ \item \textit{direct (or density-density) channel}: 
+ \begin{align*} \theta \overset{\footnotemark}{\sim} \bar{\gamma}_i\gamma_i \ \Rightarrow\ \Aboxed{&+\bar{\gamma}_i\bar{\gamma}_j\gamma^{ }_j\gamma_i^{ } \leftrightarrow -\frac{1}{4}\phi^2 \pm \phi\,\bar{\gamma}_i\gamma_i^{ }}\ \ \ \text{or  }\\ 
+ \theta\sim  \bar{\gamma}_1\gamma_1,\ \bar{\theta}\sim\bar\gamma_2\gamma_2\ \Rightarrow\ \Aboxed{&+\bar{\gamma}_1\bar{\gamma}_2\gamma^{ }_2\gamma_1^{ } \leftrightarrow -\bar{\phi}\phi \pm (\bar{\phi}\bar\gamma_2\gamma_2 +\bar{\gamma}_1\gamma_1^{ }\phi)}\\
+ \Aboxed{&-\bar{\gamma}_1\bar{\gamma}_2\gamma^{ }_2\gamma_1^{ } \leftrightarrow -\bar{\phi}\phi \pm (-\bar{\phi}\bar\gamma_2\gamma_2 +\bar{\gamma}_1\gamma_1^{ }\phi)}\end{align*}
+ \item \textit{exchange channel}: 
+ \begin{equation*}  \theta \sim \bar{\gamma}_1\gamma_2 \ \Rightarrow\ \boxed{-\bar{\gamma}_1\bar{\gamma}_2\gamma^{ }_2\gamma_1^{ } \leftrightarrow -\bar{\phi}\phi \pm (\,\bar{\phi}\,\bar{\gamma}_1\gamma_2^{ } + \bar{\gamma}_2\gamma_1^{ }\,\phi\,) } \end{equation*}
+ \item \textit{Cooper pair channel}: 
+ \begin{equation*}  \theta \sim \gamma_2\gamma_1 \ \Rightarrow\ \boxed{+\bar{\gamma}_1\bar{\gamma}_2\gamma^{ }_2\gamma_1^{ } \leftrightarrow -\bar{\phi}\phi \pm (\,\bar{\phi}\,\gamma_2\gamma_1 + \bar{\gamma}_1\bar{\gamma}_2\,\phi\,)}\end{equation*}
+\end{enumerate}
+\footnotetext{Interactions are local in time and space, so this must be the case also for the interaction between $\theta$ and the Hubbard-Stratonovich field. Time and space arguments are then omitted.} 
+The actual choice of the right ones to use must be guided by physical intuition: it has to be the most suitable for some approximation scheme usually necessary afterwards.\\
+In our case, the rationale for such a decoupling is reproducing the results of \cite{Bardyn2013} for the quadratic model; our criterion will then be choosing the product of fermionic fields which in the operatorial picture correspond to the composite operator replaced by its average in \cite{Bardyn2013}. To this end, let us recall to which operators parameters $\kappa$ and $\alpha$ are found to be related in the paper: 
+\begin{align*}
+ &\kappa = \sum_q v_q^*v_q^{ }\,\mean{a_q\bar{a}_q}=\sum_q\mean{\bar{\gamma}_2(q)\gamma_2(q)} & &\kappa\,\alpha = \sum_q v^*_qu_q^{ }\mean{a_qa_{-q}}=\sum_q\mean{\bar{\gamma}_1(q)\gamma_2(q)}\\
+ &\kappa\,\alpha^* = \sum_q u^*_qv_q^{ }\mean{\bar{a}_{-q}\bar{a}_{q}}=\sum_q\mean{\bar{\gamma}_2(q)\gamma_1(q)} & &\kappa\,|\alpha|^2 = \sum_q u_q^*u_q^{ }\mean{\bar{a}_qa_q}= \sum_q\mean{\bar{\gamma}_1(q)\gamma_1(q)}
+\end{align*}
+It is clear that we have to choose direct and exchange channel.\\ To avoid confusion, it's worth recalling that $\gamma$ spinors are proportional to Nambu spinors via functions $u_q$ and $v_q$ (Eq.~\eqref{eq:mHS_GammaSpinorDefinition}), so here the exchange channel involves bilinears $a\,a$ and $\bar{a}\,\bar{a}$: it is then a ``Cooper pair channel'' that includes the functions $u_q$ and $v_q$. \\ It's also worth observing that, in our case, due to Eq.~\eqref{eq:mHS_zerotermsadded}, an Hubbard-Stratonovich field coupled only to $\bar\gamma_1\gamma_1$ or to $\bar\gamma_2\gamma_2$ has a trivial integral:
+\begin{align*}
+ &\mathcal{N}^{-1} \int\,D\phi\,\exp\left[-\int\,\frac{1}{4}\phi^2 \pm \phi\,\gammabar_{1,2}^{ }\gamma_{1,2}^{ }\,\right] = \exp\left[+\int \gammabar_{1,2}^{ }\gamma_{1,2}^{ }\gammabar_{1,2}^{ }\gamma_{1,2}^{ }\,\right] = \exp[0]\,=\,1
+\end{align*}
+\nlspace
+After these preliminary steps, we can write some matrix decoupling formulas:
+\begin{subequations}
+\label{eq:mHS_matrixHubStrat}
+\begin{align}
+ &\begin{aligned}
+ &\exp\left[-\frac{1}{2}\int_{t,x}\bar{\gamma}_1\bar{\gamma}_2\gamma^{ }_2\gamma_1^{ }\right] = \\
+ &\ = \int D\ro D\mu D[\Delta,\bar{\Delta}]\ \exp\vast\{-\int_{t,x} \frac{1}{2}\gammabar 
+ \begin{pmatrix}
+ \ro & \Delta \\
+ \bar{\Delta} & \mu 
+ \end{pmatrix}
+ \gamma\ - \int_{t,x}\left(\frac{\ro^2+\mu^2}{4} + \frac{1}{2}\bar\Delta\Delta \right)\vast\} = \\
+ &\ = \int D\ro D\mu D[\Delta,\bar{\Delta}]\ \exp\vast\{-\int_{t,x} \frac{1}{2}\gammabar 
+ \begin{pmatrix}
+ \ro & \Delta \\
+ \bar{\Delta} & \mu 
+ \end{pmatrix}
+ \gamma\ - \int_{t,x}\frac{1}{4}\tr\left[
+ \begin{pmatrix}
+ \ro & \Delta \\
+ \bar{\Delta} & \mu 
+ \end{pmatrix}^2
+ \right]
+\vast\} = \\
+&\ = \int D\ro' D\mu' D[\Delta,\bar{\Delta}]\ \exp\vast\{-\int_{t,x} \frac{1}{2}\gammabar 
+ \begin{pmatrix}
+ \ro'+\mu' & \Delta \\
+ \bar{\Delta} & \ro'-\mu' 
+ \end{pmatrix}
+ \gamma\ -\\
+ & \ - \int_{t,x}\frac{1}{4}\tr\left[
+ \begin{pmatrix}
+ \ro'+\mu' & \Delta \\
+ \bar{\Delta} & \ro'-\mu' 
+ \end{pmatrix}^2
+ \right]
+ \vast\}
+ \end{aligned} \label{eq:mHS_matrixHubStrat_RealAsymmetric}\\[0.8cm]
+%  &\begin{aligned}
+%  &\exp\left[-\int_{t,x}\frac{\kappa_0}{2}\,\bar{\gamma}_1\bar{\gamma}_2\gamma^{ }_2\gamma_1^{ }\right] = \\ 
+%  &\ =  \int D\ro D[\Delta,\bar{\Delta}] \ \exp\vast\{-\int_{t,x}\gammabar 
+%  \begin{pmatrix}
+%  \ro & \Delta \\
+%  \bar{\Delta} & \ro 
+%  \end{pmatrix}
+%  \gamma\ - \int_{t,x}\frac{1}{\kappa_0}\left(\ro^2 + \bar\Delta\Delta \right) \vast\} = \\
+%  &\ =  \int D\ro D[\Delta,\bar{\Delta}] \ \exp\vast\{-\int_{t,x}\gammabar 
+%  \begin{pmatrix}
+%  \ro & \Delta \\
+%  \bar{\Delta} & \ro 
+%  \end{pmatrix}
+%  \gamma\ - \int_{t,x}\frac{1}{2\kappa_0}\tr\left[
+%  \begin{pmatrix}
+%  \ro & \Delta \\
+%  \bar{\Delta} & \ro
+%  \end{pmatrix}^2
+%  \right]
+% \vast\}
+% \end{aligned}\label{eq:mHS_matrixHubStrat_RealSymmetric}\\[0.5cm]
+&\begin{aligned}
+ &\exp\left[+\int_{t,x}\bar{\gamma}_1\bar{\gamma}_2\gamma^{ }_2\gamma_1^{ }\right] = \\
+ &\ =  \int D[\phi,\bar{\phi}]\,D[\pi,\bar\pi]\, D[\Delta,\bar{\Delta}] \ \exp\vast\{+\int_{t,x}\gammabar 
+ \begin{pmatrix}
+ \phi+\pi & \Delta \\
+ \bar{\Delta} & \bar{\phi}-\bar{\pi}
+ \end{pmatrix}
+ \gamma\ -\\
+ &\ - \int_{t,x}\left(\frac{1}{3}\bar\phi\phi + \bar\pi\pi + \bar\Delta\Delta\right)\vast\} = \\
+ &\ =  \int D[\phi,\bar{\phi}]\,D[\pi,\bar\pi]\, D[\Delta,\bar{\Delta}] \ \exp\vast\{+\int_{t,x}\gammabar 
+ \begin{pmatrix}
+ \phi+\pi & \Delta \\
+ \bar{\Delta} & \bar{\phi}-\bar{\pi}
+ \end{pmatrix}
+ \gamma\ -\\
+ &\ - \int_{t,x}\frac{1}{2}\tr\left[
+ \begin{pmatrix}
+ \phi/\sqrt{3} + \pi & \Delta \\
+ \bar{\Delta} & \bar{\phi}/\sqrt{3} - \bar\pi
+ \end{pmatrix}^{+}
+ \begin{pmatrix}
+ \phi/\sqrt{3}  + \pi & \Delta \\
+ \bar{\Delta} & \bar{\phi}/\sqrt{3} - \bar\pi
+ \end{pmatrix}
+ \right]
+\vast\}
+\end{aligned}\label{eq:mHS_matrixHubStrat_ComplexAsymmetric}
+%  &\begin{aligned}
+%  &\exp\left[+\int_{t,x}\frac{\kappa_0}{2}\,\bar{\gamma}_1\bar{\gamma}_2\gamma^{ }_2\gamma_1^{ }\right] = \\
+%  &\ =  \int D[\phi,\bar{\phi}]\, D[\Delta,\bar{\Delta}] \ \exp\vast\{-\int_{t,x}\gammabar 
+%  \begin{pmatrix}
+%  \phi & \Delta \\
+%  \bar{\Delta} & \bar{\phi}
+%  \end{pmatrix}
+%  \gamma - \int_{t,x}\frac{1}{\kappa_0} \left(\frac{1}{2}\bar\phi\phi + \bar\Delta\Delta \right) \vast\}= \\
+%  &\ =  \int D[\phi,\bar{\phi}]\, D[\Delta,\bar{\Delta}] \ \exp\vast\{-\int_{t,x}\gammabar 
+%  \begin{pmatrix}
+%  \phi & \Delta \\
+%  \bar{\Delta} & \bar{\phi}
+%  \end{pmatrix}
+%  \gamma\ -\\
+%  & \ - \int_{t,x}\frac{1}{2\kappa_0}\tr\left[
+%  \begin{pmatrix}
+%  \phi/\sqrt{2} & \Delta \\
+%  \bar{\Delta} & \bar{\phi}/\sqrt{2}
+%  \end{pmatrix}^{+}
+%  \begin{pmatrix}
+%  \phi/\sqrt{2} & \Delta \\
+%  \bar{\Delta} & \bar{\phi}/\sqrt{2}
+%  \end{pmatrix}
+%  \right]
+% \vast\}
+% \end{aligned}\label{eq:mHS_matrixHubStrat_ComplexSymmetric}
+\end{align}
+\end{subequations}
+
+where in Eq. \eqref{eq:mHS_matrixHubStrat_RealAsymmetric} diagonal fields give zero contribution after being integrated, while in Eq. \eqref{eq:mHS_matrixHubStrat_ComplexAsymmetric} this is not the case, because there is a fine-tuned unbalance between the coefficients of the two fields. This unbalance is necessary to decouple an interaction term with a positive sign using only complex fields, as discussed below.\\
+% where coefficient $\kappa_0$ has been introduced for a convenience reason: it can appear as an overall factor in front of the Lindblad operators without changing qualitatively the physics (but only the values of the dissipation rates); decoupling formulas \eqref{eq:mHS_matrixHubStrat_RealSymmetric} and \eqref{eq:mHS_matrixHubStrat_ComplexSymmetric} cannot reproduce the quadratic action \eqref{eq:mHS_QuadraticModelKeldyshAction} but we can rescale  $\gamma_2 \to \lambda \gamma_2$, $\bar\gamma_2 \to \lambda^*\gamma_2$ and $\kappa_0 \to |\lambda|^{-2}\kappa_0$ so that the new parameter $\lambda$ plays the role of $\alpha$. 
+The physical meaning of the fields here introduced will be clarified in the next paragraphs, looking at fermionic Green's functions after decoupling.\nsec
+
+\ssubsection{Decoupled action in the $\pm$ basis and discussion}{Decoupled action in the pm basis and discussion}
+Equations \eqref{eq:mHS_matrixHubStrat_RealAsymmetric} and \eqref{eq:mHS_matrixHubStrat_ComplexAsymmetric} already encode the final structure of the decoupled action.\\ We need only to switch to frequency and momentum space and to introduce contour indices. These simply raise the number of necessary decoupling fields by a factor of 3, since the number of vertices to be decoupled is 3 ($++$, $--$ and $-+$, which have signs $-$, $-$ and $+$ respectively).\nline
+\textcolor{red}{Define field matrices, which collect all the fields for each vertex except $\phi$, which has different coefficients and thus needs its own matrix: $M^{--}$, $M^{++}$, $M^{-+}$ and $\Phi = diag(\phi,\bar\phi)$.\\
+Rewrite the action as a sum of scalar products ($\gamma$, field matrices $\times \gamma$) and of traces of square of the field matrices. That's why we need to separate $\phi$ from the rest: the $-+$ quadratic part cannot be (easily at least!) written as a trace of an argument involving the matrix multiplying $\gamma$.}\nline
+Discussion:
+\begin{itemize}
+ \item despite not giving any contribution after integration, diagonal fields in Eq.~\eqref{eq:mHS_matrixHubStrat_RealAsymmetric} are important: they actually can change all MF equations! In order to visualize it, one should in principle write down MF equations
+ \item unbalance the quadratic part of the fields giving them different coefficients is the only possible way to write a decoupling for the $-+$ interaction (positive sign!) which has all nonzero terms in the field matrices and different terms on the diagonal; that's peculiar, but actually one could expect a peculiarity from a term which has no Hamiltonian counterpart. \textbf{[Physics behind this still to be understood!]}
+ \item gauge symmetry can now be restored transforming the fields in the appropriate way: [...]
+ \item in order to restore it, as it's clear from formulas above, diagonal terms in $++$ and $--$ sectors can be chosen real while in $-+$ they have to be chosen complex, despite their Mean Field value is expected to be real. On the top of that, the part of the action involving them is not invariant under complex conjugation, since $\gammabar$ has always the $-$ contour index while $\gamma$ has always the $+$ index or, equivalently, since $\bar a^-_qa^+_q$ has the prefactor $|u_q|^2$ while $\bar a^+_qa^-_q$ has $-|v_{-q}|^2$
+ \item if Hubbard-Stratonovich fields acquire a Mean Field value, they break the gauge symmetry; all generators seem to be broken: [...]
+ \item in particular, while in $++$ and $--$ sectors generators of the gauge group are broken by the off-diagonal term (the analogous of the superconducting order parameter), in the $-+$ sector, due to gauge transformations \eqref{eq:mHS_U(1)Transform_KeldyshPM}, also diagonal terms have to transform, compensating a phase $e^{\pm i (\theta^+-\theta^-)}$: a nonzero expectation value of theirs breaks the quantum generator, to which it's associated the total number as a conserved charge. The situation is reversed with respect to the Hamiltonian scenario.
+\end{itemize}
+
+\nsec
+
+\ssubsection{Decoupled action in the $(1,2)$ basis and discussion}{Decoupled action in the (1,2) basis and discussion}
+\textcolor{red}{Write the interaction fermions-boson in the cl,q basis for fermions BEFORE switching back to Nambu spinors (you can! multiplying by u and v is diagonal in Keldysh space, so commutes with our Keldysh rotation.) so that it is immediately visible what is the combination of the fields that has to have a mean field value of zero for causality reasons.\\
+Switch back to Nambu spinors and write the full quadratic action for fermions}; now we can interpret the mean field values of the fields in terms of fermionic Green's functions.
+
+\bibliography{../library}{}
+\bibliographystyle{alpha}  
+\end{document}

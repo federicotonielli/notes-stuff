@@ -1,0 +1,128 @@
+\documentclass[a4paper,11pt, czech, english]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{vmargin}
+
+\usepackage[all]{xy}
+\usepackage{graphicx}
+\usepackage{framed}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{babel}
+% \usepackage{fullpage}
+\usepackage{hyperref}
+
+\usepackage{enumitem}
+\usepackage{xfrac}
+\usepackage{slashed}
+\usepackage{color}
+\usepackage{cancel}
+
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+%-------------------------------------------------------------------------------
+
+\allowdisplaybreaks[4]
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\ssection}[2]{\section{ \texorpdfstring{\textbf{#1}}{#2} }}
+
+\newcommand{\HRule}{\center{\rule{0.9\linewidth}{0.5mm}}}
+
+% add these definistions to the definitions' file!!!!!!! --------------------------------------
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Det}{Det}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\mean}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\kett}[1]{\ensuremath{\left | #1 \right \rangle}}
+\newcommand{\brat}[1]{\ensuremath{\left \langle  #1 \right | }}
+\newcommand{\ket}[1]{\left | #1 \right \rangle}
+\newcommand{\bra}[1]{\left \langle  #1 \right |}
+\newcommand{\ro}{\rho}
+\newcommand{\ra}{\rightarrow}
+
+\newcommand{\nl}{\vskip 0.3cm}
+\newcommand{\ns}{\vskip 0.8cm}
+\newcommand{\np}{\vskip 1.3cm}
+
+\newcommand{\obar}[1]{\overline{#1}}
+\newcommand{\ubar}[1]{\underline{#1}}
+\newcommand{\psibar}{\bar{\psi}}
+\newcommand{\sigmatilde}{\tilde{\sigma}}
+
+\newcommand{\der}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\demu}[1]{\partial#1{\mu}}
+\newcommand{\denu}[1]{\partial#1{\nu}}
+\newcommand{\pder}[3]{\dfrac{\partial^{#1} #2}{\partial^{#1} #3}}
+\newcommand{\de}[1]{\frac{d^2#1}{(2\pi)^2}}
+
+\newcommand*{\mathcolor}{}  %allows to change the colour inside math mode without destroying the correct spacing like with \textcolor
+\def\mathcolor#1#{\mathcoloraux{#1}}
+\newcommand*{\mathcoloraux}[3]{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+ 
+% ---------------------------------------------------------------------------------------------
+
+
+% ---- info ---------
+\title{Notes: Decoupling of a quartic Lindbladian}
+\author{Federico Tonielli}
+
+% ---- document -----
+\begin{document}
+
+ \maketitle
+ 
+%  \tableofcontents
+ \blankpage
+
+\begin{itemize}
+ \item notation used: conjugate of a Grassmann field and of a product of fields, Fourier transform of $a(x)$ and $\obar{a}(x)$
+ \item what will precede this chapter: careful study of the time regularization prescription: $t$ and $t+\delta$ as in Appendix A of \cite{Sieberer2014} + 1st order perturbation theory, normal ordering as in the Hamiltonian case, argument for the equivalence of the two approaches
+ \item analysis of the MF decoupling performed at the level of the QME in Appendix A of  % \cite{Bardyn2013}
+ \begin{itemize}
+ \item  \textcolor{blue}{fate of the U(1) gauge symmetry (phase of the order parameter completely arbitrary)}
+  \item \textcolor{blue}{fate of the $\mathbb{R}^*$ gauge symmetry (modulus of the order parameter determined by fixing the density)}
+  \item \textcolor{blue}{what is the simplest basis for the decoupling and what is the most suitable way to collect the fermionic fields into spinors}
+  \item \textcolor{blue}{how many and which are potential Hubbard-Stratonovich fields: $aa$ and $a^+a^+$ terms can be decoupled via a single complex field in the usual Cooper pair channel, $a^+a$ and $aa^+$ apparently not (the final combination replaced by a Hub-Strat field will in fact be a \textit{symmetrized sum of them}).}
+ \end{itemize} 
+ \item field theory of the quartic QME in terms of the $\Psi$ spinors in the $\pm$ basis
+ \item field theory of the MF quadratic QME as above; matrix form for it and identification of the coefficients with averages of operators
+ \item decoupling ansatz based on the discussion above and the explicit breaking of the $\mathbb{R}^*$ gauge invariance, with real/complex diagonal $\alpha$ and complex off-diagonal $\beta$ fields
+ \item while $\beta$ produces, after integration, a term of the form $-L^+L$, $\alpha$ produces instead $+L^+L$: we need to tune the relative coefficients in their quadratic action to produce the correct coefficient of $L^+L$ (either $+1$ or $-\frac{1}{2}$)
+ \item a real $\alpha$ produces two additional terms which are identically 0: normal ordering doesn't change the result because it can be taken into account with the time regularization prescription, regardless of which these terms still vanish
+ \item possible decoupled actions: values of the relative coefficients of $\alpha$ and $\beta$ in all the possible cases ($\alpha$ real/complex,$+1 / -\frac{1}{2}$)
+ \item is there a simple matrix form for the decoupled action? the quadratic part of the Hub-Strat fields is $Tr[M^+M]$ for $++$ and $--$, but it's not so simple in the $-+$ sector; the interaction vertex is something like $Tr[(\obar{\Psi}\Psi)^+ M ]+Tr[M^+(\obar{\Psi}\Psi)]$
+ \item observations:
+  \begin{itemize} 
+  \item these new fields correspond to the right combination of the old ones!
+  \item as already said, the $\mathbb{R}^*$ gauge symmetry is broken; it is meaningful: this symmetry changes the relative weight between pumps and losses in the quadratic theory; we switch from a description where the number of particles is conserved (exact match between pumps and losses) to one where only the density is fixed; since fixing the density is equivalent to fixing the ratio between pumps and losses, the symmetry which changes it must be broken
+  \item the U(1)xU(1) gauge symmetry can be fully restored (U(1) gauge symmetry transformations of all the fields); the price we have to pay is to use a complex $\alpha$ field in the $\pm$ sector
+  \end{itemize}
+  \item final form of the action in a matrix and matrixless fashion 
+\end{itemize}
+
+\blankpage
+\bibliography{../library}{}
+\bibliographystyle{alpha}  
+\end{document}
